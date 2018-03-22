@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">今日头条</string>
+    <string name="title_home">首页</string>
+    <string name="title_xigua_video">西瓜视频</string>
+    <string name="title_notifications">微头条</string>
+    <string name="title_mini_video">小视频</string>
+</resources>

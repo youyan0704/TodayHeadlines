@@ -1,0 +1,16 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- 底部导航 文字大小 -->
+    <dimen name="design_bottom_navigation_text_size">@dimen/text_small_size</dimen>
+    <dimen name="design_bottom_navigation_active_text_size">@dimen/text_small_size</dimen>
+    <!-- 图片与文字的上下间距 -->
+    <dimen name="design_bottom_navigation_margin">40px</dimen>
+
+    <dimen name="text_xhight_size">48px</dimen>
+    <dimen name="text_hight_size">40px</dimen>
+    <dimen name="text_medium_size">32px</dimen>
+    <dimen name="text_small_size">28px</dimen>
+</resources>
