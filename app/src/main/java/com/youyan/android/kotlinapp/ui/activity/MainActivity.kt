@@ -51,10 +51,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
+        switchFragment(0)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
-
-        setDefaultFragment()
     }
 
     private fun setToolbar(i: Int){
@@ -105,18 +104,6 @@ class MainActivity : AppCompatActivity() {
                     beginTransaction.show(miniVideoFragment)
                 }
             }
-        }
-        beginTransaction.commit()
-    }
-
-    private fun setDefaultFragment() {
-        val fragmentManager = supportFragmentManager
-        val beginTransaction = fragmentManager.beginTransaction()
-        if (homeFragment == null) {
-            homeFragment = HomeFragment()
-            beginTransaction.add(R.id.content_main, homeFragment, "homeFragment")
-        } else {
-            beginTransaction.show(homeFragment)
         }
         beginTransaction.commit()
     }
