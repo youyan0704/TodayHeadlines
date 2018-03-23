@@ -35,37 +35,27 @@ class HomeFragment : Fragment() {
     }
 
     private fun initTabSegment() {
-        val nameResList: ArrayList<Int> = arrayListOf(R.string.title_xigua_video, R.string.title_mini_headlines, R.string.title_mini_video)
+        val titleResList: ArrayList<Int> = arrayListOf(R.string.title_xigua_video, R.string.title_mini_headlines, R.string.title_mini_video)
+        val titleList = titleResList.map(this::getString)
+
         val fragments = ArrayList<Fragment>()
         fragments.add(XiGuaFragment())
         fragments.add(MiniHeadlinesFragment())
         fragments.add(MiniVideoFragment())
 
+        contentViewPager.adapter = HomeFragmentAdapter(fragments, titleList,fragmentManager)
+        contentViewPager.offscreenPageLimit = 2
 
-        val nameList = nameResList.map(this::getString)
+        tabSegment.run {
+            setupWithViewPager(contentViewPager)
 
-        LoggerUtil.i("TAG","initTabSegment")
-        tabSegment.setHasIndicator(true);
-        tabSegment.setIndicatorPosition(false);
-/*        tabSegment.setIndicatorWidthAdjustContent(true);
-        tabSegment.addTab(QMUITabSegment.Tab("推荐"))
-        tabSegment.addTab(QMUITabSegment.Tab("热点"))
-        tabSegment.addTab(QMUITabSegment.Tab("深圳"))
-        tabSegment.addTab(QMUITabSegment.Tab("视频"))
-        tabSegment.addTab(QMUITabSegment.Tab("新时代"))
-        tabSegment.addTab(QMUITabSegment.Tab("图片"))
-        tabSegment.addTab(QMUITabSegment.Tab("娱乐"))
-        tabSegment.addTab(QMUITabSegment.Tab("问答"))
-        tabSegment.addTab(QMUITabSegment.Tab("科技"))*/
-        tabSegment.setMode(QMUITabSegment.MODE_FIXED);
-        contentViewPager.adapter = HomeFragmentAdaptr(fragments, nameList,supportFragmentManager)
-        tabSegment.setupWithViewPager(contentViewPager, false)
+        }
 
     }
 
-    class HomeFragmentAdaptr(val fragments: List<Fragment>,
-                             val nameList: List<String>,
-                             fm: FragmentManager) : FragmentPagerAdapter(fm){
+    class HomeFragmentAdapter(val fragments: List<Fragment>,
+                              val nameList: List<String>,
+                              fm: FragmentManager?) : FragmentPagerAdapter(fm){
 
         override fun getItem(position: Int): Fragment {
             return fragments[position]

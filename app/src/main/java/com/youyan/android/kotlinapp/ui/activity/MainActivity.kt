@@ -11,6 +11,7 @@ import com.youyan.android.kotlinapp.ui.fragement.MiniVideoFragment
 import com.youyan.android.kotlinapp.ui.fragement.XiGuaFragment
 import com.youyan.android.kotlinapp.utils.BottomNavigationViewHelper
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,6 +55,10 @@ class MainActivity : AppCompatActivity() {
         switchFragment(0)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
+
+        id_me.setOnClickListener(View.OnClickListener {
+
+        })
     }
 
     private fun setToolbar(i: Int){
