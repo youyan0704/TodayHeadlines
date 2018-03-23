@@ -14,7 +14,7 @@
     <item
         android:id="@+id/navigation_mini_headlines"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="@string/title_mini_headlines" />
 
     <item
         android:id="@+id/navigation_mini_video"
