@@ -1,4 +1,4 @@
-package com.youyan.android.kotlinapp.ui.fragement
+package com.youyan.android.kotlinapp.ui.fragement.main
 
 
 import android.os.Bundle
@@ -12,10 +12,10 @@ import com.youyan.android.kotlinapp.R
 
 /**
  * A simple [Fragment] subclass.
- * Use the [MiniVideoFragment.newInstance] factory method to
+ * Use the [XiGuaFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MiniVideoFragment : Fragment() {
+class XiGuaFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -32,7 +32,7 @@ class MiniVideoFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mini_video, container, false)
+        return inflater.inflate(R.layout.fragment_xi_gua, container, false)
     }
 
     companion object {
@@ -47,11 +47,11 @@ class MiniVideoFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment MiniVideoFragment.
+         * @return A new instance of fragment XiGuaFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): MiniVideoFragment {
-            val fragment = MiniVideoFragment()
+        fun newInstance(param1: String, param2: String): XiGuaFragment {
+            val fragment = XiGuaFragment()
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)

@@ -2,13 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.youyan.android.kotlinapp.ui.fragement.main.MiniVideoFragment">
+    tools:context="com.youyan.android.kotlinapp.ui.fragement.home.RecommendFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/text"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/title_mini_video" />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

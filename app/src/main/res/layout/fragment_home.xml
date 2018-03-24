@@ -2,17 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.youyan.android.kotlinapp.ui.fragement.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.youyan.android.kotlinapp.ui.fragement.main.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:showDividers="middle"
+        android:divider="@drawable/qmui_divider">
 
         <com.qmuiteam.qmui.widget.QMUITabSegment
             android:id="@+id/tabSegment"
             android:layout_width="match_parent"
-            android:layout_height="40dp"/>
+            android:layout_height="30dp"
+            android:paddingHorizontal="@dimen/paddingHorizontal"
+            android:textSize="@dimen/text_medium_size"
+            app:qmui_tab_mode="scrollable"/>
 
         <com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
             android:id="@+id/pullRefreshLayout"
@@ -26,7 +32,6 @@
                 android:layout_weight="1" />
 
         </com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout>
-
 
     </LinearLayout>
 

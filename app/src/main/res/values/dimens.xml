@@ -3,14 +3,17 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!-- 底部导航 文字大小 -->
+    <!-- 底部导航 文字大小 上下间距 -->
     <dimen name="design_bottom_navigation_text_size">@dimen/text_small_size</dimen>
     <dimen name="design_bottom_navigation_active_text_size">@dimen/text_small_size</dimen>
-    <!-- 图片与文字的上下间距 -->
-    <dimen name="design_bottom_navigation_margin">35px</dimen>
+    <dimen name="design_bottom_navigation_margin">10dp</dimen>
 
-    <dimen name="text_xhight_size">48px</dimen>
-    <dimen name="text_hight_size">40px</dimen>
-    <dimen name="text_medium_size">32px</dimen>
-    <dimen name="text_small_size">28px</dimen>
+    <!-- 整体app 文字大小  -->
+    <dimen name="text_xhight_size">20dp</dimen>
+    <dimen name="text_hight_size">16dp</dimen>
+    <dimen name="text_medium_size">14dp</dimen>
+    <dimen name="text_small_size">10dp</dimen>
+
+    <dimen name="paddingHorizontal">10dp</dimen>
+
 </resources>

@@ -52,7 +52,8 @@
                 android:drawablePadding="8dp"
                 android:hint="搜你想搜的"
                 android:padding="8dp"
-                android:textSize="@dimen/text_hight_size" />
+                android:textColorHint="@color/qmui_config_color_gray_2"
+                android:textSize="@dimen/text_medium_size" />
 
         </LinearLayout>
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="home_titles">
+        <item name="attention">关注</item>
+        <item name="ecommend">推荐</item>
+        <item name="location">深圳</item>
+        <item name="video">视频</item>
+        <item name="hot_point">热点</item>
+        <item name="entertainment">娱乐</item>
+        <item name="new_era">新时代</item>
+        <item name="qa">问答</item>
+        <item name="picture">图片</item>
+        <item name="science_technology">科技</item>
+        <item name="finance">财经</item>
+        <item name="car">汽车</item>
+        <item name="sports">体育</item>
+        <item name="military">军事</item>
+        <item name="international">国际</item>
+        <item name="episode">段子</item>
+        <item name="odd_photos">趣图</item>
+        <item name="street_beat">街拍</item>
+        <item name="healthy">健康</item>
+        <item name="sale">特卖</item>
+        <item name="house_property">房产</item>
+    </array>
+</resources>

@@ -5,10 +5,10 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.youyan.android.kotlinapp.R
-import com.youyan.android.kotlinapp.ui.fragement.HomeFragment
-import com.youyan.android.kotlinapp.ui.fragement.MiniHeadlinesFragment
-import com.youyan.android.kotlinapp.ui.fragement.MiniVideoFragment
-import com.youyan.android.kotlinapp.ui.fragement.XiGuaFragment
+import com.youyan.android.kotlinapp.ui.fragement.main.HomeFragment
+import com.youyan.android.kotlinapp.ui.fragement.main.MiniHeadlinesFragment
+import com.youyan.android.kotlinapp.ui.fragement.main.MiniVideoFragment
+import com.youyan.android.kotlinapp.ui.fragement.main.XiGuaFragment
 import com.youyan.android.kotlinapp.utils.BottomNavigationViewHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*

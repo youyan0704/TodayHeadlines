@@ -1,4 +1,4 @@
-package com.youyan.android.kotlinapp.ui.fragement
+package com.youyan.android.kotlinapp.ui.fragement.main
 
 
 import android.os.Bundle
@@ -8,10 +8,9 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.qmuiteam.qmui.widget.QMUITabSegment
 
 import com.youyan.android.kotlinapp.R
-import com.youyan.android.kotlinapp.utils.LoggerUtil
+import com.youyan.android.kotlinapp.ui.fragement.home.RecommendFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.ArrayList
 
@@ -35,15 +34,21 @@ class HomeFragment : Fragment() {
     }
 
     private fun initTabSegment() {
-        val titleResList: ArrayList<Int> = arrayListOf(R.string.title_xigua_video, R.string.title_mini_headlines, R.string.title_mini_video)
+        val titleResList: ArrayList<Int> = arrayListOf(R.string.attention, R.string.recommend, R.string.location,
+                R.string.video,R.string.hot_point, R.string.entertainment,
+                R.string.new_era,R.string.qa, R.string.picture,
+                R.string.science_technology,R.string.finance, R.string.car,
+                R.string.sports,R.string.military, R.string.international,
+                R.string.episode,R.string.odd_photos, R.string.street_beat,
+                R.string.healthy,R.string.sale, R.string.house_property)
         val titleList = titleResList.map(this::getString)
 
         val fragments = ArrayList<Fragment>()
-        fragments.add(XiGuaFragment())
-        fragments.add(MiniHeadlinesFragment())
-        fragments.add(MiniVideoFragment())
+        for (i in 1.. titleList.size){
+            fragments.add(RecommendFragment.newInstance(titleList[i-1]))
+        }
 
-        contentViewPager.adapter = HomeFragmentAdapter(fragments, titleList,fragmentManager)
+        contentViewPager.adapter = HomeFragmentAdapter(fragments, titleList, fragmentManager)
         contentViewPager.offscreenPageLimit = 2
 
         tabSegment.run {
