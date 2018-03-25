@@ -4,12 +4,18 @@
     android:layout_height="match_parent"
     tools:context="com.youyan.android.kotlinapp.ui.fragement.home.RecommendFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/text"
-        android:gravity="center"
+    <com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
+        android:id="@+id/pullRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <com.qmuiteam.qmui.widget.QMUIAnimationListView
+            android:id="@+id/animationListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.qmuiteam.qmui.widget.QMUIAnimationListView>
+
+    </com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout>
 
 </FrameLayout>

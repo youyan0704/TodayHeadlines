@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_recommend.*
  */
 class RecommendFragment : Fragment() {
 
-    // TODO: Rename and change types of parameters
     private var title: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +34,10 @@ class RecommendFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        text.setText(title)
         super.onViewCreated(view, savedInstanceState)
     }
 
     companion object {
-        // TODO: Rename parameter arguments, choose names that match
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
         private val ARG_TITLE = "title"
 
@@ -49,7 +46,6 @@ class RecommendFragment : Fragment() {
          * this fragment using the provided parameters.
          *
          * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment RecommendFragment.
          */
         // TODO: Rename and change types and number of parameters
