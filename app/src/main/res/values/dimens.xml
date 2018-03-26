@@ -16,5 +16,6 @@
 
     <dimen name="paddingHorizontal_10dp">10dp</dimen>
     <dimen name="paddingHorizontal_5dp">5dp</dimen>
+    <dimen name="paddingHorizontal_2dp">2dp</dimen>
 
 </resources>

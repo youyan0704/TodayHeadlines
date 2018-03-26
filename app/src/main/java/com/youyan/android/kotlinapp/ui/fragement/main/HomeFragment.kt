@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.qmuiteam.qmui.widget.QMUIItemViewsAdapter
 
 import com.youyan.android.kotlinapp.R
 import com.youyan.android.kotlinapp.ui.fragement.home.RecommendFragment
@@ -34,7 +35,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initTabSegment() {
-        val titleResList: ArrayList<Int> = arrayListOf(R.string.attention, R.string.recommend, R.string.location,
+        val titleResList: ArrayList<Int> = arrayListOf(R.string.recommend, R.string.location,
                 R.string.video,R.string.hot_point, R.string.entertainment,
                 R.string.new_era,R.string.qa, R.string.picture,
                 R.string.science_technology,R.string.finance, R.string.car,
