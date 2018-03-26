@@ -39,7 +39,8 @@ class RecommendFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recommends = ArrayList<Recommend>()
         for (i in 1..15){
-            recommends.add(Recommend(1,"中国最危险的村长：四周被悬崖绝壁保卫，进出只靠一个铁笼子","http://i.imgur.com/DvpvklR.png",
+            recommends.add(Recommend(1,"中国最危险的村长：四周被悬崖绝壁保卫，进出只靠一个铁笼子",
+                    "http://p1.pstatp.com/large/pgc-image/1521900422569f610a0908a",
                     "热","人民日报","144评论","03-25 10:12",false))
         }
         animationListView.adapter = RecommendItemAdapter(context,recommends)
