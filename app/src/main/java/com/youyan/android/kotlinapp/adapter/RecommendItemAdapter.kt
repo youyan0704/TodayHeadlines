@@ -14,7 +14,6 @@ import com.qmuiteam.qmui.widget.QMUIAnimationListView
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
 import com.youyan.android.kotlinapp.R
 import com.youyan.android.kotlinapp.model.Recommend
-import com.youyan.android.kotlinapp.utils.ToastUtil
 
 /**
  * Created by android on 3/26/18.

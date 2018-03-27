@@ -11,7 +11,10 @@ import com.qmuiteam.qmui.widget.QMUIAnimationListView
 import com.youyan.android.kotlinapp.R
 import com.youyan.android.kotlinapp.adapter.RecommendItemAdapter
 import com.youyan.android.kotlinapp.model.Recommend
+import com.youyan.android.kotlinapp.network.RecommendSource
 import kotlinx.android.synthetic.main.fragment_recommend.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 
 /**
@@ -22,6 +25,8 @@ import kotlinx.android.synthetic.main.fragment_recommend.*
 class RecommendFragment : Fragment() {
 
     private var title: String? = null
+    var recommendResources = ArrayList<Recommend>()
+    lateinit var adapter: RecommendItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +43,33 @@ class RecommendFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recommends = ArrayList<Recommend>()
-        for (i in 1..15){
+
+        /*for (i in 1..15){
             recommends.add(Recommend(1,"中国最危险的村长：四周被悬崖绝壁保卫，进出只靠一个铁笼子",
                     "http://p1.pstatp.com/large/pgc-image/1521900422569f610a0908a",
                     "热","人民日报","144评论","03-25 10:12",false))
-        }
-        animationListView.adapter = RecommendItemAdapter(context,recommends)
+        }*/
+        adapter = RecommendItemAdapter(context,recommendResources)
+        animationListView.adapter = adapter
 
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if ( recommendResources.size == 0) {
+            load()
+        }
+    }
+
+    private fun load() {
+        doAsync {
+            val data = RecommendSource().get()
+            uiThread {
+                recommendResources = data
+                adapter.notifyDataSetChanged()
+
+            }
+        }
     }
 
     companion object {

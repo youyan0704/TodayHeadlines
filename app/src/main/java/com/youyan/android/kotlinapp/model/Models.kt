@@ -4,8 +4,9 @@ package com.youyan.android.kotlinapp.model
  * Created by android on 3/26/18.
  */
 data class Recommend(
-        val id : Int,
+//        val id: Int,
         val title: String,
+        val url: String,
         val image: String,
         val category: String,
         val source: String,
