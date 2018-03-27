@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.qmuiteam.qmui.widget.QMUIAnimationListView
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
 import com.youyan.android.kotlinapp.R
 import com.youyan.android.kotlinapp.model.Recommend
 import com.youyan.android.kotlinapp.utils.ToastUtil
@@ -33,14 +35,28 @@ class RecommendItemAdapter(val context: Context?,
         viewHolder.isVisiable(R.id.delete,View.VISIBLE)
 
         viewHolder.getView<ImageView>(R.id.delete)!!.setOnClickListener(View.OnClickListener {
-            recommends.removeAt(position)
-            notifyDataSetChanged()
+            var tipDialog: QMUITipDialog
+            parent as QMUIAnimationListView
+            parent.manipulate(QMUIAnimationListView.Manipulator<RecommendItemAdapter> {
+                recommends.removeAt(position)
+                notifyDataSetChanged()
+                tipDialog = QMUITipDialog.Builder(context)
+                        .setIconType(QMUITipDialog.Builder.ICON_TYPE_SUCCESS)
+                        .setTipWord("删除成功")
+                        .create()
+                tipDialog.show()
+
+                parent.postDelayed(Runnable {
+                    tipDialog.dismiss()
+                },1000)
+            })
         })
 
         viewHolder.convertView!!.setOnClickListener(View.OnClickListener {
             recommends[position].read = true
             notifyDataSetChanged()
-            ToastUtil.showShort(context,recommends[position].title?:"") })
+//            ToastUtil.showShort(context,recommends[position].title?:"")
+        })
 
         return viewHolder.convertView!!
     }

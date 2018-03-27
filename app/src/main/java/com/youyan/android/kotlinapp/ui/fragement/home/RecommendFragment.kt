@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.qmuiteam.qmui.widget.QMUIAnimationListView
 
 import com.youyan.android.kotlinapp.R
 import com.youyan.android.kotlinapp.adapter.RecommendItemAdapter
@@ -44,6 +45,7 @@ class RecommendFragment : Fragment() {
                     "热","人民日报","144评论","03-25 10:12",false))
         }
         animationListView.adapter = RecommendItemAdapter(context,recommends)
+
     }
 
     companion object {
