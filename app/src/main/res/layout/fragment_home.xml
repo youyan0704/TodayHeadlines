@@ -18,7 +18,8 @@
             android:layout_height="30dp"
             android:paddingHorizontal="@dimen/paddingHorizontal_10dp"
             android:textSize="@dimen/text_hight_size"
-            app:qmui_tab_mode="scrollable" />
+            app:qmui_tab_mode="scrollable"
+            app:qmui_tab_space="@dimen/text_hight_size"/>
 
 
         <com.qmuiteam.qmui.widget.QMUIViewPager

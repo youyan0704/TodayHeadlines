@@ -68,4 +68,9 @@ class RecommendItemAdapter(val context: Context?,
 
     override fun getCount(): Int = recommends.size
 
+    fun update(newData: ArrayList<Recommend>){
+        recommends.addAll(newData)
+        notifyDataSetChanged()
+    }
+
 }

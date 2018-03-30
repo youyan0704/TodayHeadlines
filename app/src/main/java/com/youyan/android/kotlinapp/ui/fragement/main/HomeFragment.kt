@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
         }
 
         contentViewPager.adapter = HomeFragmentAdapter(fragments, titleList, fragmentManager)
-        contentViewPager.offscreenPageLimit = 2
+        contentViewPager.offscreenPageLimit = titleList.size
 
         tabSegment.run {
             setupWithViewPager(contentViewPager)

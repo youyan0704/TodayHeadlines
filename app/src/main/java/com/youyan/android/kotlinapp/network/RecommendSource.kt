@@ -11,7 +11,7 @@ class RecommendSource : Source<ArrayList<Recommend>>{
 
     companion object {
         val BASE_URL = "https://www.toutiao.com/"
-        val URL = "https://www.toutiao.com/"
+        val URL = "http://news.qq.com/"
     }
 
     override fun get(): ArrayList<Recommend> {
@@ -19,9 +19,21 @@ class RecommendSource : Source<ArrayList<Recommend>>{
 
         val html = getHtml(URL)
         val doc = Jsoup.parse(html)
-        LoggerUtil.i("TAG",doc.toString())
+//        LoggerUtil.i("TAG",doc.toString())
 
-        val elements = doc.select("div.bui-box single-mode")
+        val elements = doc.select("div.Q-tpList").select("div.Q-tpWrap")
+        for (element in elements){
+            val url = element.select("a").attr("href")
+            val image = element.select("a").select("img").attr("src")
+            val title = element.select("div.text").select("em").select("a").text()
+            LoggerUtil.i("TAG",title)
+
+            val recommend = Recommend(title,url,image,"","","","",false)
+            recommendSourceList.add(recommend)
+        }
+
+
+        /*val elements = doc.select("div.bui-box single-mode")
         for (element in elements){
             val image = "https:" + element.select("div.bui-left single-mode-lbox").select("a.img-wrap")
                     .select("img.lazy-load-img").attr("src")
@@ -38,7 +50,7 @@ class RecommendSource : Source<ArrayList<Recommend>>{
 
             val recommend = Recommend(title,url,image,category,source,comment,publishTime,false)
             recommendSourceList.add(recommend)
-        }
+        }*/
 
         /*val elements = doc.select("li.item    ").select("div.item-inner y-box")
         for (element in elements){

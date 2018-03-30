@@ -12,6 +12,7 @@ import com.youyan.android.kotlinapp.R
 import com.youyan.android.kotlinapp.adapter.RecommendItemAdapter
 import com.youyan.android.kotlinapp.model.Recommend
 import com.youyan.android.kotlinapp.network.RecommendSource
+import com.youyan.android.kotlinapp.utils.LoggerUtil
 import kotlinx.android.synthetic.main.fragment_recommend.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -49,6 +50,7 @@ class RecommendFragment : Fragment() {
                     "http://p1.pstatp.com/large/pgc-image/1521900422569f610a0908a",
                     "热","人民日报","144评论","03-25 10:12",false))
         }*/
+        LoggerUtil.i("adapter","load RecommendItemAdapter")
         adapter = RecommendItemAdapter(context,recommendResources)
         animationListView.adapter = adapter
 
@@ -56,7 +58,9 @@ class RecommendFragment : Fragment() {
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        if ( recommendResources.size == 0) {
+        if (isVisibleToUser && recommendResources.size == 0) {
+
+            LoggerUtil.i("load","load recommendResources")
             load()
         }
     }
@@ -65,8 +69,7 @@ class RecommendFragment : Fragment() {
         doAsync {
             val data = RecommendSource().get()
             uiThread {
-                recommendResources = data
-                adapter.notifyDataSetChanged()
+                adapter.update(data)
 
             }
         }
