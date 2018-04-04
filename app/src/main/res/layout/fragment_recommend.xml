@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.youyan.android.kotlinapp.ui.fragement.home.RecommendFragment">
+    tools:context="com.youyan.android.headlines.ui.fragement.home.RecommendFragment">
 
     <com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
         android:id="@+id/pullRefreshLayout"

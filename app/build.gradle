@@ -7,11 +7,11 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.youyan.android.kotlinapp"
+        applicationId "com.youyan.android.headlines"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -35,15 +35,25 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    //图片缓存库
+    //图片缓存库 picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
     //QMUI
     compile 'com.qmuiteam:qmui:1.0.6'
-
+    //okhttp3
     compile 'com.squareup.okhttp3:okhttp:3.10.0'
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+    //引入Log拦截器，方便DEBUG模式输出log信息
+    compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
     //html解析
     compile 'org.jsoup:jsoup:1.11.2'
     //anko
     compile "org.jetbrains.anko:anko:$anko_version"
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.google.code.gson:gson:2.6.2'
+    //RXjava kotlin
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 }
