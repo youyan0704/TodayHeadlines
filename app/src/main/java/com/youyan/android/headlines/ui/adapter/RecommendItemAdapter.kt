@@ -1,19 +1,16 @@
-package com.youyan.android.headlines.adapter
+package com.youyan.android.headlines.ui.adapter
 
 import android.content.Context
-import android.content.res.Resources
-import android.database.DataSetObserver
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.qmuiteam.qmui.widget.QMUIAnimationListView
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
 import com.youyan.android.headlines.R
-import com.youyan.android.headlines.model.Recommend
+import com.youyan.android.headlines.common.CommonViewHolder
+import com.youyan.android.headlines.ui.model.Recommend
 
 /**
  * Created by android on 3/26/18.

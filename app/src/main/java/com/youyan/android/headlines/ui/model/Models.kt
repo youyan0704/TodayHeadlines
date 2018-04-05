@@ -1,4 +1,4 @@
-package com.youyan.android.headlines.model
+package com.youyan.android.headlines.ui.model
 
 /**
  * Created by android on 3/26/18.

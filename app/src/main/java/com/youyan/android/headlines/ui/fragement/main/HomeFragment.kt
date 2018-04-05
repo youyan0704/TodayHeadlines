@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.qmuiteam.qmui.widget.QMUIItemViewsAdapter
 
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.ui.fragement.home.RecommendFragment
@@ -46,7 +45,7 @@ class HomeFragment : Fragment() {
 
         val fragments = ArrayList<Fragment>()
         for (i in 1.. titleList.size){
-            fragments.add(RecommendFragment.newInstance(titleList[i-1]))
+            fragments.add(RecommendFragment())
         }
 
         contentViewPager.adapter = HomeFragmentAdapter(fragments, titleList, fragmentManager)

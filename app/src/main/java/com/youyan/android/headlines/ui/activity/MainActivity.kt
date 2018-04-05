@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.youyan.android.headlines.R
+import com.youyan.android.headlines.ui.base.BaseActivity
 import com.youyan.android.headlines.ui.fragement.main.HomeFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniHeadlinesFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniVideoFragment

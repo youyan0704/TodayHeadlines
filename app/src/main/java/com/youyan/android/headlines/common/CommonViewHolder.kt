@@ -1,4 +1,4 @@
-package com.youyan.android.headlines.adapter
+package com.youyan.android.headlines.common
 
 /**
  * Created by android on 11/20/17.
@@ -115,7 +115,7 @@ private constructor(context: Context?, itemLayoutResId: Int, position: Int, pare
         return this
     }
 
-    fun isVisiable(viewResId: Int, isVisiable: Int): CommonViewHolder{
+    fun isVisiable(viewResId: Int, isVisiable: Int): CommonViewHolder {
         val view = getView<View>(viewResId)
         view!!.visibility = isVisiable
         return this

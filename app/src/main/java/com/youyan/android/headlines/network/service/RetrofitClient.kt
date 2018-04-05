@@ -2,6 +2,7 @@ package com.youyan.android.headlines.network.service
 
 import android.content.Context
 import android.util.Log
+import com.youyan.android.headlines.app.BaseApplicatoin
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,31 +14,32 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitClient {
 
-    constructor(context: Context, url: String = baseUrl, headers: Map<String, String>? = null){
+    constructor(url: String = baseUrl, headers: Map<String, String>? = null){
 
-        //缓存地址
-        if (httpCacheDirectory == null) {
-            httpCacheDirectory = File(context!!.cacheDir, "cache")
-        }
-
-        try {
-            if (cache == null) {
-                cache = Cache(httpCacheDirectory, (10 * 1024 * 1024).toLong())
-            }
-        } catch (e: Exception) {
-            Log.e("OKHttp", "Could not create http cache", e)
-        }
+//        //缓存地址
+//        if (httpCacheDirectory == null) {
+//            httpCacheDirectory = File(BaseApplicatoin().context().cacheDir, "cache")
+//        }
+//
+//        try {
+//            if (cache == null) {
+//                cache = Cache(httpCacheDirectory, (10 * 1024 * 1024).toLong())
+//            }
+//        } catch (e: Exception) {
+//            Log.e("OKHttp", "Could not create http cache", e)
+//        }
 
         //创建okHttpClient
         okHttpClient = OkHttpClient.Builder()
                 .addNetworkInterceptor(
                         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .cache(cache)
+//                .cache(cache)
 //                .addInterceptor(BaseInterceptor(headers))
 //                .addInterceptor(CacheInterceptor(context))
 //                .addNetworkInterceptor(CacheInterceptor(context))
                 .connectTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
                 .build()
 
         //创建retrofit
@@ -49,10 +51,9 @@ class RetrofitClient {
                 .build()
     }
 
-    fun createBaseApi(): RetrofitClient{
+    fun createBaseApi(): ApiService{
 
-        retrofit.create(ApiService::class.java)
-        return this
+        return retrofit.create(ApiService::class.java)
     }
 
     companion object {
@@ -61,32 +62,21 @@ class RetrofitClient {
         private val DEFAULT_TIMEOUT: Int = 20
 
         lateinit var mContext: Context
-        private lateinit var httpCacheDirectory: File
-        private lateinit var cache: Cache
+        private var httpCacheDirectory: File? = null
+        private var cache: Cache? = null
         lateinit var okHttpClient: OkHttpClient
         lateinit var retrofit: Retrofit
 
-        fun getInstance(context: Context): RetrofitClient {
-            if (context != null) {
-                mContext = context
-            }
-            return RetrofitClient(context)
+        fun getInstance(): RetrofitClient {
+            return RetrofitClient()
         }
 
-        fun getInstance(context: Context, url: String): RetrofitClient {
-            if (context != null) {
-                mContext = context
-            }
-
-            return RetrofitClient(context, url)
+        fun getInstance(url: String): RetrofitClient {
+            return RetrofitClient(url)
         }
 
-        fun getInstance(context: Context, url: String, headers: Map<String, String>): RetrofitClient {
-            if (context != null) {
-                mContext = context
-            }
-            return RetrofitClient(context, url, headers)
+        fun getInstance(url: String, headers: Map<String, String>): RetrofitClient {
+            return RetrofitClient(url, headers)
         }
-
     }
 }

@@ -1,7 +1,7 @@
 package com.youyan.android.headlines.network
 
 import com.youyan.android.headlines.common.getHtml
-import com.youyan.android.headlines.model.Recommend
+import com.youyan.android.headlines.ui.model.Recommend
 import com.youyan.android.headlines.utils.LoggerUtil
 import org.jsoup.Jsoup
 
