@@ -8,12 +8,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
 
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.ui.adapter.RecommendItemAdapter
 import com.youyan.android.headlines.ui.model.Recommend
 import com.youyan.android.headlines.network.RecommendSource
 import com.youyan.android.headlines.ui.base.BaseFragment
+import com.youyan.android.headlines.ui.model.NewsData
 import com.youyan.android.headlines.ui.model.NewsResponse
 import com.youyan.android.headlines.ui.presenter.NewsPresenter
 import com.youyan.android.headlines.ui.view.NewsView
@@ -24,7 +26,7 @@ import org.jetbrains.anko.uiThread
 
 class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
-    var recommendResources = ArrayList<Recommend>()
+    var recommendResources = ArrayList<NewsData>()
     lateinit var adapter: RecommendItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,19 +43,29 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        pullRefreshLayout.setOnPullListener(object : QMUIPullRefreshLayout.OnPullListener {
+            override fun onMoveRefreshView(offset: Int) {
+            }
+
+            override fun onRefresh() {
+                mBasePresenter.getNewsResponse()
+            }
+
+            override fun onMoveTarget(offset: Int) {
+            }
+
+        })
+
         adapter = RecommendItemAdapter(context,recommendResources)
         animationListView.adapter = adapter
 
     }
 
-    override fun onGetNewsResponseResult(newsResponse: NewsResponse) {
+    override fun onGetNewsResponseResult(newsDataList: ArrayList<NewsData>) {
+        LoggerUtil.i("onGetNewsResponseResult",newsDataList.size.toString())
+        recommendResources = newsDataList
+        adapter.update(recommendResources)
 
-        LoggerUtil.i("onGetNewsResponseResult",newsResponse.message)
-        LoggerUtil.i("onGetNewsResponseResult",newsResponse.tips.display_info)
-
-        for (data in newsResponse.data){
-            LoggerUtil.i("onGetNewsData",data.content)
-        }
 
     }
 
@@ -65,18 +77,8 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
 
         if (isVisibleToUser && recommendResources.size == 0) {
-//            load()
             mBasePresenter.getNewsResponse()
         }
     }
 
-    private fun load() {
-        doAsync {
-            val data = RecommendSource().get()
-            uiThread {
-                adapter.update(data)
-
-            }
-        }
-    }
 }// Required empty public constructor

@@ -3,7 +3,7 @@ package com.youyan.android.headlines.ui.model
 
 data class NewsResponse(
 		val message: String,
-		val data: List<Data>,
+		val data: ArrayList<Data>,
 		val total_number: Int,
 		val has_more: Boolean,
 		val login_status: Int,
@@ -11,7 +11,7 @@ data class NewsResponse(
 		val post_content_hint: String,
 		val has_more_to_refresh: Boolean,
 		val action_to_last_stick: Int,
-		val sub_entrance_list: List<Any>,
+		val sub_entrance_list: ArrayList<Any>,
 		val feed_flag: Int,
 		val tips: Tips
 )
