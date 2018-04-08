@@ -10,30 +10,23 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Function
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 
 class NewsPresenter : BasePresenter<NewsView>() {
 
     fun getNewsResponse(){
         apiService.getNewsResponse()
-                .map(object : Function<NewsResponse,ArrayList<Data>> {
-                    override fun apply(t: NewsResponse): ArrayList<Data> {
-                        return t.data
+                .map { t -> t.data }
+                .map { t ->
+                    val newsData:ArrayList<NewsData> = ArrayList()
+                    for (data in t){
+                        val news = Gson().fromJson(data.content,NewsData::class.java)
+                        if (news.has_image)
+                            newsData.add(news)
                     }
-
-                })
-                .map(object : Function<ArrayList<Data>,ArrayList<NewsData>> {
-                    override fun apply(t: ArrayList<Data>): ArrayList<NewsData> {
-                        val newsData:ArrayList<NewsData> = ArrayList()
-                        for (data in t){
-                            val news = Gson().fromJson(data.content,NewsData::class.java)
-                            if (news.has_image)
-                                newsData.add(news)
-                        }
-                        return newsData
-                    }
-
-                })
+                    newsData
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<ArrayList<NewsData>> {

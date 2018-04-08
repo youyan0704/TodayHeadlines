@@ -28,6 +28,7 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
     var recommendResources = ArrayList<NewsData>()
     lateinit var adapter: RecommendItemAdapter
+    var isQMUIPullRefreshLayoutVisiable: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,17 +45,17 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
         super.onViewCreated(view, savedInstanceState)
 
         pullRefreshLayout.setOnPullListener(object : QMUIPullRefreshLayout.OnPullListener {
-            override fun onMoveRefreshView(offset: Int) {
-            }
+            override fun onMoveRefreshView(offset: Int) {}
 
             override fun onRefresh() {
+                isQMUIPullRefreshLayoutVisiable = true
                 mBasePresenter.getNewsResponse()
             }
 
-            override fun onMoveTarget(offset: Int) {
-            }
+            override fun onMoveTarget(offset: Int) {}
 
         })
+
 
         adapter = RecommendItemAdapter(context,recommendResources)
         animationListView.adapter = adapter
@@ -63,6 +64,11 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
     override fun onGetNewsResponseResult(newsDataList: ArrayList<NewsData>) {
         LoggerUtil.i("onGetNewsResponseResult",newsDataList.size.toString())
+        if (isQMUIPullRefreshLayoutVisiable){
+            isQMUIPullRefreshLayoutVisiable = false
+            pullRefreshLayout.finishRefresh()
+        }
+
         recommendResources = newsDataList
         adapter.update(recommendResources)
 
@@ -74,7 +80,6 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
         mBasePresenter = NewsPresenter()
         mBasePresenter.mBaseView = this
-
 
         if (isVisibleToUser && recommendResources.size == 0) {
             mBasePresenter.getNewsResponse()
