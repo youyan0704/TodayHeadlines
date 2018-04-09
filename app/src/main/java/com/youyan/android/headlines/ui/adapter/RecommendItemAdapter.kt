@@ -12,6 +12,7 @@ import com.youyan.android.headlines.R
 import com.youyan.android.headlines.common.CommonViewHolder
 import com.youyan.android.headlines.ui.model.NewsData
 import com.youyan.android.headlines.utils.DateUtil
+import com.youyan.android.headlines.utils.LoggerUtil
 import java.util.*
 
 /**
@@ -29,9 +30,8 @@ class RecommendItemAdapter(val context: Context?,
         viewHolder.isVisiable(R.id.category,if (recommends[position].source.isEmpty()) View.GONE else View.VISIBLE)
         viewHolder.setText(R.id.source,recommends[position].source?:"")
         viewHolder.setText(R.id.comment, recommends[position].comment_count.toString() + "评论" ?:"")
-        viewHolder.setText(R.id.publishTime, DateUtil.convertSecond2Day(recommends[position].publish_time,null))
+        viewHolder.setText(R.id.publishTime, DateUtil.convertSecond2Day(recommends[position].publish_time.toLong(),null))
         viewHolder.isVisiable(R.id.delete,View.VISIBLE)
-
         viewHolder.getView<ImageView>(R.id.delete)!!.setOnClickListener(View.OnClickListener {
             var tipDialog: QMUITipDialog
             parent as QMUIAnimationListView

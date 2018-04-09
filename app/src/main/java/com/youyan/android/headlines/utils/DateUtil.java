@@ -315,18 +315,20 @@ public class DateUtil {
     }
 
     //剩余秒数转换
-    public static String convertSecond2Day(int time,Date compareTime) {
+    public static String convertSecond2Day(long time,Date compareTime) {
         if (compareTime == null){
             compareTime = new Date();
         }
+
         int DAY_SECOND = 24 * 60 * 60;
         int HOUR_SECOND = 60 * 60;
         int day = (int) ((compareTime.getTime()/1000 - time)/ DAY_SECOND);
         int hour = (int) ((compareTime.getTime()/1000 - time - DAY_SECOND * day) / HOUR_SECOND);
         int min = (int) ((compareTime.getTime()/1000 - time - DAY_SECOND * day - HOUR_SECOND * hour) / 60);
+
         StringBuilder sb = new StringBuilder();
         if (day >= 1){
-            sb.append(dateToString(new Date(time), DatePattern.ONLY_MONTH_DAY));
+            sb.append(dateToString(new Date(time * 1000), DatePattern.ONLY_MONTH_DAY));
         }
         else if (day < 1 && hour >=1){
             sb.append(hour);
