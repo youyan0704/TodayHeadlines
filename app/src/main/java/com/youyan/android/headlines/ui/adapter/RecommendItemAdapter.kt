@@ -11,7 +11,6 @@ import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.common.CommonViewHolder
 import com.youyan.android.headlines.ui.model.NewsData
-import com.youyan.android.headlines.ui.model.Recommend
 import com.youyan.android.headlines.utils.DateUtil
 import java.util.*
 

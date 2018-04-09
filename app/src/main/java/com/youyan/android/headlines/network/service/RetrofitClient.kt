@@ -1,8 +1,7 @@
 package com.youyan.android.headlines.network.service
 
 import android.content.Context
-import android.util.Log
-import com.youyan.android.headlines.app.BaseApplicatoin
+import com.youyan.android.headlines.network.Constant
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

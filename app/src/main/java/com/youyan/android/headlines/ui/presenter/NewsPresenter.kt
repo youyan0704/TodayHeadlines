@@ -2,18 +2,15 @@ package com.youyan.android.headlines.ui.presenter
 
 import com.google.gson.Gson
 import com.youyan.android.headlines.ui.base.BasePresenter
-import com.youyan.android.headlines.ui.model.Data
 import com.youyan.android.headlines.ui.model.NewsData
-import com.youyan.android.headlines.ui.model.NewsResponse
 import com.youyan.android.headlines.ui.view.NewsView
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Function
-import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class NewsPresenter : BasePresenter<NewsView>() {
+class NewsPresenter @Inject constructor(): BasePresenter<NewsView>() {
 
     fun getNewsResponse(){
         apiService.getNewsResponse()

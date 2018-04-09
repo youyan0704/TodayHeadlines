@@ -1,4 +1,4 @@
-package com.youyan.android.headlines.network.service
+package com.youyan.android.headlines.network
 
 class Constant {
 
