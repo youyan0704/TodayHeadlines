@@ -8,6 +8,7 @@ import com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
 
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.injection.component.DaggerRecommendFragmentComponent
+import com.youyan.android.headlines.injection.module.LifecycleProviderModule
 import com.youyan.android.headlines.ui.adapter.RecommendItemAdapter
 import com.youyan.android.headlines.ui.base.BaseFragment
 import com.youyan.android.headlines.ui.model.NewsData
@@ -57,14 +58,17 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
     }
 
     private fun initInjection() {
-        DaggerRecommendFragmentComponent.builder().build().inject(this)
+        DaggerRecommendFragmentComponent.builder()
+                .lifecycleProviderModule(LifecycleProviderModule(this))
+                .build()
+                .inject(this)
 
         mBasePresenter.mBaseView = this
 
     }
 
     override fun onGetNewsResponseResult(newsDataList: ArrayList<NewsData>) {
-        LoggerUtil.i("onGetNewsResponseResult",newsDataList.size.toString())
+
         if (isQMUIPullRefreshLayoutVisiable){
             isQMUIPullRefreshLayoutVisiable = false
             pullRefreshLayout.finishRefresh()

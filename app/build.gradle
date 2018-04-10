@@ -63,5 +63,8 @@ dependencies {
     compile 'com.google.dagger:dagger-android-support:2.11'
     kapt  'com.google.dagger:dagger-android-processor:2.11'
     kapt 'com.google.dagger:dagger-compiler:2.11'
+    //rxlifecycle
+    compile 'com.trello.rxlifecycle2:rxlifecycle-kotlin:2.2.1'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
 
 }

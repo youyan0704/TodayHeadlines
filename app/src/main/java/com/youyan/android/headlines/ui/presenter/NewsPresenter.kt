@@ -1,6 +1,7 @@
 package com.youyan.android.headlines.ui.presenter
 
 import com.google.gson.Gson
+import com.trello.rxlifecycle2.LifecycleProvider
 import com.youyan.android.headlines.ui.base.BasePresenter
 import com.youyan.android.headlines.ui.model.NewsData
 import com.youyan.android.headlines.ui.view.NewsView
@@ -24,6 +25,7 @@ class NewsPresenter @Inject constructor(): BasePresenter<NewsView>() {
                     }
                     newsData
                 }
+                .compose(lifecycleProvider.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<ArrayList<NewsData>> {

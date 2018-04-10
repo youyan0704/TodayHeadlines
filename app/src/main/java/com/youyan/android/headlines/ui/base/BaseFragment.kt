@@ -1,9 +1,9 @@
 package com.youyan.android.headlines.ui.base
 
-import android.support.v4.app.Fragment
+import com.trello.rxlifecycle2.components.support.RxFragment
 import javax.inject.Inject
 
-open class BaseFragment<P:BasePresenter<*>> : Fragment(),BaseView {
+open class BaseFragment<P:BasePresenter<*>> : RxFragment(),BaseView {
     override fun showLoading() {
     }
 
