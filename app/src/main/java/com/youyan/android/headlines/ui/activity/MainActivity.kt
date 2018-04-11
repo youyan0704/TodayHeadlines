@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.youyan.android.headlines.R
+import com.youyan.android.headlines.app.AppManager
 import com.youyan.android.headlines.ui.base.BaseActivity
 import com.youyan.android.headlines.ui.fragement.main.HomeFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniHeadlinesFragment
@@ -13,6 +14,7 @@ import com.youyan.android.headlines.ui.fragement.main.XiGuaFragment
 import com.youyan.android.headlines.utils.BottomNavigationViewHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private var xiguaFragment: XiGuaFragment? = null
     private var miniHeadlinesFragment: MiniHeadlinesFragment? = null
     private var miniVideoFragment: MiniVideoFragment? = null
+    private var exitTime: Long = 0
 
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -119,5 +122,16 @@ class MainActivity : AppCompatActivity() {
         if (xiguaFragment != null) beginTransaction.hide(xiguaFragment)
         if (miniHeadlinesFragment != null) beginTransaction.hide(miniHeadlinesFragment)
         if (miniVideoFragment != null) beginTransaction.hide(miniVideoFragment)
+    }
+
+    override fun onBackPressed() {
+        val time = System.currentTimeMillis()
+        if (time - exitTime > 2000){
+            toast("再按一次退出程序")
+            exitTime = time
+        }else{
+            AppManager.instance.exitApp(this)
+        }
+
     }
 }
