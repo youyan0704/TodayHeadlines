@@ -6,12 +6,11 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.AppManager
-import com.youyan.android.headlines.ui.base.BaseActivity
 import com.youyan.android.headlines.ui.fragement.main.HomeFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniHeadlinesFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniVideoFragment
 import com.youyan.android.headlines.ui.fragement.main.XiGuaFragment
-import com.youyan.android.headlines.utils.BottomNavigationViewHelper
+import com.youyan.android.headlines.reflect.BottomNavigationViewHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.toast
