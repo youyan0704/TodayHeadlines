@@ -11,13 +11,11 @@ import com.youyan.android.headlines.ui.fragement.main.MiniHeadlinesFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniVideoFragment
 import com.youyan.android.headlines.ui.fragement.main.XiGuaFragment
 import com.youyan.android.headlines.reflect.BottomNavigationViewHelper
-import com.youyan.android.headlines.ui.base.BaseActivity
-import com.youyan.android.headlines.ui.base.BasePresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.toast
 
-class MainActivity : BaseActivity<BasePresenter<*>>() {
+class MainActivity : AppCompatActivity() {
 
     private var homeFragment: HomeFragment? = null
     private var xiguaFragment: XiGuaFragment? = null

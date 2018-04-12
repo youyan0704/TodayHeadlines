@@ -14,7 +14,6 @@ import javax.inject.Inject
 class NewsPresenter @Inject constructor(): BasePresenter<NewsView>() {
 
     fun getNewsResponse(){
-        if (!isNetworkAvaliable()) return
         apiService.getNewsResponse()
                 .map { t -> t.data }
                 .map { t ->
