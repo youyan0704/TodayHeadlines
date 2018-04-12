@@ -7,14 +7,13 @@ import android.view.ViewGroup
 import com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
 
 import com.youyan.android.headlines.R
-import com.youyan.android.headlines.injection.component.DaggerRecommendFragmentComponent
+import com.youyan.android.headlines.injection.component.FragmentComponent
 import com.youyan.android.headlines.injection.module.LifecycleProviderModule
 import com.youyan.android.headlines.ui.adapter.RecommendItemAdapter
 import com.youyan.android.headlines.ui.base.BaseFragment
 import com.youyan.android.headlines.ui.model.NewsData
 import com.youyan.android.headlines.ui.presenter.NewsPresenter
 import com.youyan.android.headlines.ui.view.NewsView
-import com.youyan.android.headlines.utils.LoggerUtil
 import kotlinx.android.synthetic.main.fragment_recommend.*
 
 class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
@@ -25,6 +24,7 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initInjection()
 
     }
 
@@ -38,6 +38,9 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
         super.onViewCreated(view, savedInstanceState)
 
 
+        if (recommendResources.size == 0){
+            mBasePresenter.getNewsResponse()
+        }
 
         pullRefreshLayout.setOnPullListener(object : QMUIPullRefreshLayout.OnPullListener {
             override fun onMoveRefreshView(offset: Int) {}
@@ -51,17 +54,17 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
         })
 
-
         adapter = RecommendItemAdapter(context,recommendResources)
         animationListView.adapter = adapter
 
     }
 
     private fun initInjection() {
-        DaggerRecommendFragmentComponent.builder()
-                .lifecycleProviderModule(LifecycleProviderModule(this))
-                .build()
-                .inject(this)
+//        DaggerRecommendFragmentComponent.builder()
+//                .fragmentComponent((this as BaseFragment<*>).fragmentComponent)
+//                .lifecycleProviderModule(LifecycleProviderModule(this))
+//                .build()
+//                .inject(this)
 
         mBasePresenter.mBaseView = this
 
@@ -83,11 +86,9 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
 
-        initInjection()
-
-        if (isVisibleToUser && recommendResources.size == 0) {
+      /*  if (isVisibleToUser && recommendResources.size == 0) {
             mBasePresenter.getNewsResponse()
-        }
+        }*/
     }
 
 }// Required empty public constructor
