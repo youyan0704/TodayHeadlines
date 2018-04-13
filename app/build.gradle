@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
     //QMUI
-    compile 'com.qmuiteam:qmui:1.0.6'
+    compile 'com.qmuiteam:qmui:1.1.0'
     //okhttp3
     compile 'com.squareup.okhttp3:okhttp:3.10.0'
     //引入Log拦截器，方便DEBUG模式输出log信息
