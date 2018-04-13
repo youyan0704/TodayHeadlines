@@ -9,6 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
+import java.net.Proxy
 import java.util.concurrent.TimeUnit
 
 class RetrofitClient {
@@ -36,6 +37,7 @@ class RetrofitClient {
 //                .addInterceptor(BaseInterceptor(headers))
 //                .addInterceptor(CacheInterceptor(context))
 //                .addNetworkInterceptor(CacheInterceptor(context))
+                .proxy(Proxy.NO_PROXY)  //防止被抓包
                 .connectTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
