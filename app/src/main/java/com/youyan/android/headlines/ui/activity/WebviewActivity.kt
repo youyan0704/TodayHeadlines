@@ -10,10 +10,12 @@ import android.view.Window
 import android.webkit.*
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.youyan.android.headlines.R
+import com.youyan.android.headlines.ui.base.BaseActivity
+import com.youyan.android.headlines.ui.base.BasePresenter
 import com.youyan.android.headlines.utils.LoggerUtil
 import kotlinx.android.synthetic.main.activity_webview.*
 
-class WebviewActivity : AppCompatActivity() {
+class WebviewActivity : BaseActivity<BasePresenter<*>>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

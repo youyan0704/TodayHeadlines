@@ -11,11 +11,14 @@ import com.youyan.android.headlines.ui.fragement.main.MiniHeadlinesFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniVideoFragment
 import com.youyan.android.headlines.ui.fragement.main.XiGuaFragment
 import com.youyan.android.headlines.reflect.BottomNavigationViewHelper
+import com.youyan.android.headlines.ui.base.BaseActivity
+import com.youyan.android.headlines.ui.base.BasePresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
 
     private var homeFragment: HomeFragment? = null
     private var xiguaFragment: XiGuaFragment? = null
@@ -59,9 +62,16 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
 
-        id_me.setOnClickListener(View.OnClickListener {
+        initView()
+        initData()
+    }
 
-        })
+    private fun initView() {
+        id_me.setOnClickListener(this)
+    }
+
+    private fun initData() {
+
     }
 
     private fun setToolbar(i: Int){
@@ -121,6 +131,14 @@ class MainActivity : AppCompatActivity() {
         if (xiguaFragment != null) beginTransaction.hide(xiguaFragment)
         if (miniHeadlinesFragment != null) beginTransaction.hide(miniHeadlinesFragment)
         if (miniVideoFragment != null) beginTransaction.hide(miniVideoFragment)
+    }
+
+    override fun onClick(v: View) {
+        when(v.id){
+            R.id.id_me -> {
+                startActivity<UserInfoActivity>()
+            }
+        }
     }
 
     override fun onBackPressed() {
