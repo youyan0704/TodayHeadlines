@@ -141,7 +141,10 @@ data class MediaInfo(
 		val verified_content: String
 )
 
+@Entity
 data class UserInfo(
+		@Id var id:Long = 0,
+
 		val userid: Long,
 		val avatar_url: String,
 		val description: String,

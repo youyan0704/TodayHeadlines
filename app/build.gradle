@@ -77,5 +77,6 @@ dependencies {
     compile "io.objectbox:objectbox-android:$objectboxVersion"
     compile "io.objectbox:objectbox-kotlin:$objectboxVersion"
     kapt "io.objectbox:objectbox-processor:$objectboxVersion"
+    annotationProcessor "io.objectbox:objectbox-processor:$objectboxVersion"
 
 }

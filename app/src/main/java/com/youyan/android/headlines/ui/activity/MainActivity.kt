@@ -1,11 +1,15 @@
 package com.youyan.android.headlines.ui.activity
 
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.squareup.picasso.Picasso
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.AppManager
+import com.youyan.android.headlines.app.BaseApplicatoin
+import com.youyan.android.headlines.common.loadUrl
 import com.youyan.android.headlines.ui.fragement.main.HomeFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniHeadlinesFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniVideoFragment
@@ -13,7 +17,10 @@ import com.youyan.android.headlines.ui.fragement.main.XiGuaFragment
 import com.youyan.android.headlines.reflect.BottomNavigationViewHelper
 import com.youyan.android.headlines.ui.base.BaseActivity
 import com.youyan.android.headlines.ui.base.BasePresenter
+import com.youyan.android.headlines.ui.model.UserInfo
+import io.objectbox.Box
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -25,6 +32,8 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
     private var miniHeadlinesFragment: MiniHeadlinesFragment? = null
     private var miniVideoFragment: MiniVideoFragment? = null
     private var exitTime: Long = 0
+    private lateinit var userInfo: UserInfo
+    private lateinit var userInfoBox: Box<UserInfo>
 
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -62,15 +71,33 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
 
-        initView()
         initData()
+        initView()
     }
 
     private fun initView() {
         id_me.setOnClickListener(this)
+        id_publish.setOnClickListener(this)
+
+        if (userInfo.avatar_url.isNotEmpty()){
+            loginedIcon.visibility = View.VISIBLE
+            unLoginedIcon.visibility = View.GONE
+            unLoginedText.visibility = View.GONE
+            loginedIcon.loadUrl(userInfo.avatar_url)
+        }else{
+            loginedIcon.visibility = View.GONE
+            unLoginedIcon.visibility = View.VISIBLE
+            unLoginedText.visibility = View.VISIBLE
+        }
     }
 
     private fun initData() {
+        userInfoBox = BaseApplicatoin.getBoxStoreInstance().boxFor(UserInfo::class.java)
+        /*userInfo = UserInfo(0,1,"http://cdnq.duitang.com/uploads/item/201504/04/20150404H3338_N8Wir.jpeg",
+                "",true,12,
+                "xiaoY","",true,"")
+        userInfoBox.put(userInfo)*/
+        userInfo = userInfoBox.all.first()
 
     }
 
@@ -137,6 +164,9 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         when(v.id){
             R.id.id_me -> {
                 startActivity<UserInfoActivity>()
+            }
+            R.id.id_publish ->{
+                toast("稍后发布....")
             }
         }
     }
