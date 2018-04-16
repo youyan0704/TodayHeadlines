@@ -142,8 +142,7 @@ data class MediaInfo(
 )
 
 data class UserInfo(
-		val userid: Long = 0,
-
+		val userid: Long,
 		val avatar_url: String,
 		val description: String,
 		val follow: Boolean,

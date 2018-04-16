@@ -92,12 +92,9 @@ private constructor(context: Context?, itemLayoutResId: Int, position: Int, pare
     }
 
 
-    fun setImageFromUrl(viewResId: Int, uri: Uri): CommonViewHolder {
+    fun setImageFromUrl(viewResId: Int, url: String): CommonViewHolder {
         val iv = getView<ImageView>(viewResId)
-        Picasso.get()
-                .load(uri)
-                .placeholder(R.mipmap.app_logo)
-                .into(iv)
+        (iv as ImageView).loadUrl(url)
 
         return this
     }

@@ -16,6 +16,7 @@ import com.youyan.android.headlines.ui.base.BaseFragment
 import com.youyan.android.headlines.ui.model.NewsData
 import com.youyan.android.headlines.ui.presenter.NewsPresenter
 import com.youyan.android.headlines.ui.view.NewsView
+import com.youyan.android.headlines.utils.LoggerUtil
 import kotlinx.android.synthetic.main.fragment_recommend.*
 import org.jetbrains.anko.support.v4.intentFor
 
@@ -49,16 +50,11 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
         adapter = RecommendItemAdapter(context,recommendResources)
         animationListView.adapter = adapter
-        /*
-        adapter.setOnItemClickLister(RecommendItemAdapter.OnItemClickListener { adapter, view, position ->
-
-            val intent = Intent(context,WebviewActivity::class.java)
-            intent.putExtra("article_url",recommendResources[position].article_url)
-
-            return@OnItemClickListener
-
-            startActivity(intent)
-
+        
+/*        adapter.setOnItemClickListener(object : RecommendItemAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+            }
+            
         })*/
 
     }
@@ -82,6 +78,7 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
         recommendResources = newsDataList
         adapter.update(recommendResources)
+        LoggerUtil.i("TAG",adapter.getItem(0).toString())
 
 
     }

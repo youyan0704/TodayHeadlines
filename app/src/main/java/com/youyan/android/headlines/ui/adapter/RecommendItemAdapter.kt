@@ -21,19 +21,26 @@ import java.util.*
  */
 class RecommendItemAdapter(val context: Context?,
                            val recommends: ArrayList<NewsData>) : BaseAdapter() {
-    
+
+    lateinit var listener: OnItemClickListener
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val viewHolder = CommonViewHolder.getViewHolder(context, R.layout.fragment_recommend_item, position, convertView, parent)
         val newsData = recommends[position]
-        viewHolder.setText(R.id.title,newsData.title?:"")
+        viewHolder.setText(R.id.title,newsData.title ?:"")
         viewHolder.setTextColor(R.id.title,if (newsData.read) Color.GRAY else Color.BLACK)
-        viewHolder.setImageFromUrl(R.id.image, Uri.parse(newsData.middle_image.url?:""))
-        viewHolder.setText(R.id.category,newsData.source?:"")
-        viewHolder.isVisiable(R.id.category,if (newsData.source.isEmpty()) View.GONE else View.VISIBLE)
-        viewHolder.setText(R.id.source,newsData.source?:"")
+        viewHolder.setImageFromUrl(R.id.image, newsData.middle_image.url ?:"")
+        viewHolder.isVisiable(R.id.category,if (newsData.hot.equals(0)) View.GONE else View.VISIBLE)
+        viewHolder.setText(R.id.category,if (newsData.hot.equals(0)) "热" else "")
+
+        viewHolder.setText(R.id.source,newsData.source ?:"")
         viewHolder.setText(R.id.comment, newsData.comment_count.toString() + "评论" ?:"")
         viewHolder.setText(R.id.publishTime, DateUtil.convertSecond2Day(newsData.publish_time.toLong(),null))
         viewHolder.isVisiable(R.id.delete,View.VISIBLE)
+/*        viewHolder.convertView?.setOnClickListener {
+            listener.onItemClick(position)
+        }*/
+
         viewHolder.getView<ImageView>(R.id.delete)!!.setOnClickListener(View.OnClickListener {
             var tipDialog: QMUITipDialog
             parent as QMUIAnimationListView
@@ -53,6 +60,8 @@ class RecommendItemAdapter(val context: Context?,
         })
 
         viewHolder.convertView!!.setOnClickListener(View.OnClickListener {
+            newsData.read = true
+            notifyDataSetChanged()
             val intent = Intent(context,WebviewActivity::class.java)
             intent.putExtra("url",newsData.article_url)
             context?.startActivity(intent)
@@ -74,4 +83,11 @@ class RecommendItemAdapter(val context: Context?,
         notifyDataSetChanged()
     }
 
+    interface OnItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        this.listener = listener
+    }
 }
