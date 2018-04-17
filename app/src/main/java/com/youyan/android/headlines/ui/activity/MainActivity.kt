@@ -9,6 +9,7 @@ import com.squareup.picasso.Picasso
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.AppManager
 import com.youyan.android.headlines.app.BaseApplicatoin
+import com.youyan.android.headlines.common.isLogined
 import com.youyan.android.headlines.common.loadUrl
 import com.youyan.android.headlines.ui.fragement.main.HomeFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniHeadlinesFragment
@@ -71,15 +72,27 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
 
-        initData()
         initView()
+        initData()
+
     }
 
     private fun initView() {
         id_me.setOnClickListener(this)
         id_publish.setOnClickListener(this)
 
-        if (userInfo.avatar_url.isNotEmpty()){
+    }
+
+    private fun initData() {
+        userInfoBox = BaseApplicatoin.getBoxStoreInstance().boxFor(UserInfo::class.java)
+        /*userInfo = UserInfo(0,1,"http://cdnq.duitang.com/uploads/item/201504/04/20150404H3338_N8Wir.jpeg",
+                "",true,12,
+                "xiaoY","",true,"")
+        userInfoBox.put(userInfo)*/
+        userInfoBox.removeAll()
+
+        if (isLogined()){
+            userInfo = userInfoBox.all.first()
             loginedIcon.visibility = View.VISIBLE
             unLoginedIcon.visibility = View.GONE
             unLoginedText.visibility = View.GONE
@@ -89,15 +102,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
             unLoginedIcon.visibility = View.VISIBLE
             unLoginedText.visibility = View.VISIBLE
         }
-    }
 
-    private fun initData() {
-        userInfoBox = BaseApplicatoin.getBoxStoreInstance().boxFor(UserInfo::class.java)
-        /*userInfo = UserInfo(0,1,"http://cdnq.duitang.com/uploads/item/201504/04/20150404H3338_N8Wir.jpeg",
-                "",true,12,
-                "xiaoY","",true,"")
-        userInfoBox.put(userInfo)*/
-        userInfo = userInfoBox.all.first()
 
     }
 

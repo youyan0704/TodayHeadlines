@@ -4,6 +4,8 @@ import android.net.Uri
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import com.youyan.android.headlines.R
+import com.youyan.android.headlines.app.BaseApplicatoin
+import com.youyan.android.headlines.ui.model.UserInfo
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
@@ -26,4 +28,9 @@ fun ImageView.loadUrl(url: String){
             .load(Uri.parse(url))
             .placeholder(R.mipmap.app_logo)
             .into(this)
+}
+
+fun isLogined(): Boolean {
+
+    return BaseApplicatoin.getBoxStoreInstance().boxFor(UserInfo::class.java).count() > 0
 }
