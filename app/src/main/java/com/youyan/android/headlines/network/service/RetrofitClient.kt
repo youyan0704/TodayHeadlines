@@ -60,7 +60,7 @@ class RetrofitClient {
     companion object {
 
         private val baseUrl: String = Constant.BASE_SERVER_URL
-        private val DEFAULT_TIMEOUT: Int = 20
+        private const val DEFAULT_TIMEOUT: Int = 20
 
         lateinit var mContext: Context
         private var httpCacheDirectory: File? = null
