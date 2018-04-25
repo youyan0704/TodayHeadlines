@@ -19,29 +19,29 @@ import java.util.*
 /**
  * Created by android on 3/26/18.
  */
-class RecommendItemAdapter(val context: Context?,
-                           val recommends: ArrayList<NewsData>) : BaseAdapter() {
+class RecommendItemAdapter(val context: Context,
+                           private val recommends: ArrayList<NewsData>) : BaseAdapter() {
 
     lateinit var listener: OnItemClickListener
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val viewHolder = CommonViewHolder.getViewHolder(context, R.layout.fragment_recommend_item, position, convertView, parent)
         val newsData = recommends[position]
-        viewHolder.setText(R.id.title,newsData.title ?:"")
+        viewHolder.setText(R.id.title, newsData.title)
         viewHolder.setTextColor(R.id.title,if (newsData.read) Color.GRAY else Color.BLACK)
-        viewHolder.setImageFromUrl(R.id.image, newsData.middle_image.url ?:"")
+        viewHolder.setImageFromUrl(R.id.image, newsData.middle_image.url)
         viewHolder.isVisiable(R.id.category,if (newsData.hot.equals(0)) View.GONE else View.VISIBLE)
         viewHolder.setText(R.id.category,if (newsData.hot.equals(0)) "热" else "")
 
-        viewHolder.setText(R.id.source,newsData.source ?:"")
-        viewHolder.setText(R.id.comment, newsData.comment_count.toString() + "评论" ?:"")
+        viewHolder.setText(R.id.source, newsData.source)
+        viewHolder.setText(R.id.comment, newsData.comment_count.toString() + "评论")
         viewHolder.setText(R.id.publishTime, DateUtil.convertSecond2Day(newsData.publish_time.toLong(),null))
         viewHolder.isVisiable(R.id.delete,View.VISIBLE)
 /*        viewHolder.convertView?.setOnClickListener {
             listener.onItemClick(position)
         }*/
 
-        viewHolder.getView<ImageView>(R.id.delete)!!.setOnClickListener(View.OnClickListener {
+        viewHolder.getView<ImageView>(R.id.delete)!!.setOnClickListener({
             var tipDialog: QMUITipDialog
             parent as QMUIAnimationListView
             parent.manipulate(QMUIAnimationListView.Manipulator<RecommendItemAdapter> {
@@ -59,12 +59,12 @@ class RecommendItemAdapter(val context: Context?,
             })
         })
 
-        viewHolder.convertView!!.setOnClickListener(View.OnClickListener {
+        viewHolder.convertView!!.setOnClickListener({
             newsData.read = true
             notifyDataSetChanged()
             val intent = Intent(context,WebviewActivity::class.java)
             intent.putExtra("url",newsData.article_url)
-            context?.startActivity(intent)
+            context.startActivity(intent)
         })
 
         return viewHolder.convertView!!

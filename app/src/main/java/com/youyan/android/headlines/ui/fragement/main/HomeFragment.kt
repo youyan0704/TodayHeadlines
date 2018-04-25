@@ -58,8 +58,8 @@ class HomeFragment : Fragment() {
 
     }
 
-    class HomeFragmentAdapter(val fragments: List<Fragment>,
-                              val nameList: List<String>,
+    class HomeFragmentAdapter(private val fragments: List<Fragment>,
+                              private val nameList: List<String>,
                               fm: FragmentManager?) : FragmentPagerAdapter(fm){
 
         override fun getItem(position: Int): Fragment {

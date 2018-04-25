@@ -1,6 +1,5 @@
 package com.youyan.android.headlines.ui.fragement.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.injection.component.DaggerRecommendFragmentComponent
 import com.youyan.android.headlines.injection.module.LifecycleProviderModule
-import com.youyan.android.headlines.ui.activity.WebviewActivity
 import com.youyan.android.headlines.ui.adapter.RecommendItemAdapter
 import com.youyan.android.headlines.ui.base.BaseFragment
 import com.youyan.android.headlines.ui.model.NewsData
@@ -18,7 +16,6 @@ import com.youyan.android.headlines.ui.presenter.NewsPresenter
 import com.youyan.android.headlines.ui.view.NewsView
 import com.youyan.android.headlines.utils.LoggerUtil
 import kotlinx.android.synthetic.main.fragment_recommend.*
-import org.jetbrains.anko.support.v4.intentFor
 
 class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
@@ -47,8 +44,9 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
         })
 
+        animationListView.
 
-        adapter = RecommendItemAdapter(context,recommendResources)
+        adapter = RecommendItemAdapter(activity!!.applicationContext,recommendResources)
         animationListView.adapter = adapter
         
 /*        adapter.setOnItemClickListener(object : RecommendItemAdapter.OnItemClickListener {

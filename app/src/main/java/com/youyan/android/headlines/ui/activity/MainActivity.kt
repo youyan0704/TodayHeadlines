@@ -1,11 +1,8 @@
 package com.youyan.android.headlines.ui.activity
 
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.squareup.picasso.Picasso
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.AppManager
 import com.youyan.android.headlines.app.BaseApplicatoin
@@ -21,7 +18,6 @@ import com.youyan.android.headlines.ui.base.BasePresenter
 import com.youyan.android.headlines.ui.model.UserInfo
 import io.objectbox.Box
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
