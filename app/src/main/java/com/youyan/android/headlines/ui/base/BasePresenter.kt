@@ -7,7 +7,11 @@ import javax.inject.Inject
 
 open class BasePresenter<T: BaseView> {
 
-    val apiService: ApiService = RetrofitClient.getInstance().createBaseApi()
+    val apiService: ApiService
+
+    init {
+        apiService = RetrofitClient.getInstance().createBaseApi()
+    }
 
     lateinit var mBaseView: T
 
