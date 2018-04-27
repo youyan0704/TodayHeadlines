@@ -8,12 +8,13 @@ apply plugin: "kotlin-kapt"
 
 apply plugin: "io.objectbox"
 
+apply plugin: "com.mob.sdk"
 
 android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.youyan.android.headlines"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0.0"
@@ -26,6 +27,14 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+}
+
+MobSDK {
+    appKey AppKey
+    appSecret AppSecret
+
+    ShareSDK {}
+
 }
 
 dependencies {

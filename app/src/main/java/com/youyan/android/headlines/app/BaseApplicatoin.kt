@@ -1,6 +1,7 @@
 package com.youyan.android.headlines.app
 
 import android.app.Application
+import com.mob.MobSDK
 import com.youyan.android.headlines.BuildConfig
 import com.youyan.android.headlines.ui.model.MyObjectBox
 import com.youyan.android.headlines.utils.LoggerUtil
@@ -11,6 +12,7 @@ class BaseApplicatoin : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        MobSDK.init(this)
         initObjectBox()
     }
 
