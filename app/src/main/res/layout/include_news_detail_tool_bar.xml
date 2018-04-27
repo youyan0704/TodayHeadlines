@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="vertical"
+    android:background="@color/material_grey_50">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        android:divider="@drawable/linearlayout_horizonal_blank_divider_20dp"
+        android:paddingVertical="@dimen/padding_5dp"
+        android:paddingHorizontal="@dimen/paddingHorizontal_10dp">
+
+        <TextView
+            android:id="@+id/write_comment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/shape_detail_comment"
+            android:drawablePadding="@dimen/padding_5dp"
+            android:drawableLeft="@drawable/ic_edit_black_24dp"
+            android:gravity="center|left"
+            android:paddingLeft="12dp"
+            android:text="@string/detail_write_comment"
+            android:textColor="@color/material_black"
+            android:textSize="@dimen/text_medium_size"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:showDividers="middle"
+            android:divider="@drawable/linearlayout_horizonal_blank_divider_20dp">
+
+            <ImageView
+                android:id="@+id/comment_count"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/comment_count"/>
+
+            <ImageView
+                android:id="@+id/love"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/love"/>
+
+            <ImageView
+                android:id="@+id/share"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/share"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

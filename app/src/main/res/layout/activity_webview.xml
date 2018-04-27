@@ -5,17 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.WebviewActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:showDividers="middle"
+    android:divider="@drawable/linearlayout_vertical_line_divider">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:visibility="gone"/>
+    <include layout="@layout/include_news_detail_top"/>
 
-    <WebView
-        android:id="@+id/webContent"
+    <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:visibility="gone"/>
+
+        <WebView
+            android:id="@+id/webContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
+
+    <include layout="@layout/include_news_detail_tool_bar"/>
 
 </LinearLayout>
