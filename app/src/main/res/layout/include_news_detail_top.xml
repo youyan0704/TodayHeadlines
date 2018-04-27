@@ -47,6 +47,7 @@
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:paddingRight="@dimen/paddingHorizontal_10dp"
         android:scaleType="center"
         app:srcCompat="@drawable/ic_more_horiz_black_24dp"/>
 

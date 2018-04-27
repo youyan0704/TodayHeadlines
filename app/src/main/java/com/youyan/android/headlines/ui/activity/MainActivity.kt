@@ -10,6 +10,7 @@ import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.AppManager
 import com.youyan.android.headlines.app.BaseApplicatoin
 import com.youyan.android.headlines.common.isLogined
+import com.youyan.android.headlines.common.isProcessInBackground
 import com.youyan.android.headlines.common.loadUrl
 import com.youyan.android.headlines.ui.fragement.main.HomeFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniHeadlinesFragment
@@ -19,6 +20,7 @@ import com.youyan.android.headlines.reflect.BottomNavigationViewHelper
 import com.youyan.android.headlines.ui.base.BaseActivity
 import com.youyan.android.headlines.ui.base.BasePresenter
 import com.youyan.android.headlines.ui.model.UserInfo
+import com.youyan.android.headlines.utils.LoggerUtil
 import io.objectbox.Box
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
@@ -71,6 +73,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         switchFragment(0)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
+        LoggerUtil.i("isProcessInBackground", isProcessInBackground(this).toString())
 
         initView()
         initData()

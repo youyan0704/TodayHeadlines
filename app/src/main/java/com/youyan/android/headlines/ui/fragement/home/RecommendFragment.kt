@@ -10,15 +10,12 @@ import com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.injection.component.DaggerRecommendFragmentComponent
 import com.youyan.android.headlines.injection.module.LifecycleProviderModule
-import com.youyan.android.headlines.ui.activity.WebviewActivity
 import com.youyan.android.headlines.ui.adapter.RecommendItemAdapter
 import com.youyan.android.headlines.ui.base.BaseFragment
 import com.youyan.android.headlines.ui.model.NewsData
 import com.youyan.android.headlines.ui.presenter.NewsPresenter
 import com.youyan.android.headlines.ui.view.NewsView
-import com.youyan.android.headlines.utils.LoggerUtil
 import kotlinx.android.synthetic.main.fragment_recommend.*
-import org.jetbrains.anko.support.v4.intentFor
 
 class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
@@ -78,8 +75,6 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
         recommendResources = newsDataList
         adapter.update(recommendResources)
-        LoggerUtil.i("TAG",adapter.getItem(0).toString())
-
 
     }
 

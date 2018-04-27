@@ -1,45 +1,54 @@
 package com.youyan.android.headlines.ui.activity
 
 import android.graphics.Bitmap
-import android.net.http.SslError
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
-import android.view.Window
 import android.webkit.*
-import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.ui.base.BaseActivity
 import com.youyan.android.headlines.ui.base.BasePresenter
-import com.youyan.android.headlines.utils.LoggerUtil
 import kotlinx.android.synthetic.main.activity_webview.*
+import kotlinx.android.synthetic.main.include_news_detail_tool_bar.*
+import kotlinx.android.synthetic.main.include_news_detail_top.*
+import org.jetbrains.anko.toast
 
-class WebviewActivity : BaseActivity<BasePresenter<*>>() {
+class WebviewActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_webview)
 
-//        QMUIStatusBarHelper.setStatusBarLightMode(this)
+        initView()
+        initWebView()
 
-        webContent.settings.javaScriptEnabled
+    }
+
+    private fun initView() {
+        iv_back.setOnClickListener(this)
+        write_comment.setOnClickListener(this)
+        comment_count.setOnClickListener(this)
+        love.setOnClickListener(this)
+        share.setOnClickListener(this)
+    }
+
+    private fun initWebView() {
+        webContent.settings.javaScriptEnabled = true
+        webContent.settings.javaScriptCanOpenWindowsAutomatically = true
         webContent.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
         webContent.settings.setAppCacheEnabled(true)
         webContent.settings.allowFileAccess = true
         webContent.settings.setAppCachePath(applicationContext.cacheDir.absolutePath)
         webContent.settings.loadsImagesAutomatically = true
-        webContent.settings.setSupportZoom(true)
+        webContent.settings.setSupportZoom(false)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webContent.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
 
-
-//        window.requestFeature(Window.FEATURE_PROGRESS)
         webContent.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
-                progressBar.progress = newProgress * 1000
             }
         }
 
@@ -51,26 +60,41 @@ class WebviewActivity : BaseActivity<BasePresenter<*>>() {
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-                progressBar.visibility = View.VISIBLE
 
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                progressBar.visibility = View.GONE
-            }
-
-            override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
-                super.onReceivedSslError(view, handler, error)
-                LoggerUtil.i("sslError",error.toString())
-                handler!!.proceed()
-
             }
 
         }
 
-        LoggerUtil.i("url",intent.getStringExtra("url"))
-        webContent.loadUrl(intent.getStringExtra("url"))
+        webContent.loadUrl(intent.getStringExtra("url"))    }
 
+    override fun onClick(v: View) {
+        when(v.id){
+            R.id.iv_back -> {
+                finish()
+            }
+            R.id.write_comment -> {
+                toast("写评论")
+            }
+            R.id.comment_count -> {
+                toast("评论数")
+            }
+            R.id.love -> {
+                toast("收藏")
+            }
+            R.id.share -> {
+                toast("分享")
+            }
+        }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return super.onKeyDown(keyCode, event)
+        if (keyCode == KeyEvent.KEYCODE_BACK && webContent.canGoBack()){
+            webContent.goBack()
+        }
     }
 }

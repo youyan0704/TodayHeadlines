@@ -15,6 +15,10 @@ import okhttp3.Request
 /**
  * Created by android on 3/27/18.
  */
+
+/**
+ * 获取网页
+ */
 fun getHtml(url: String): String {
     val client = OkHttpClient()
     val request = Request.Builder()
@@ -26,6 +30,9 @@ fun getHtml(url: String): String {
     return response.body()?.string() ?: ""
 }
 
+/**
+ * 图片加载扩展
+ */
 fun ImageView.loadUrl(url: String){
     Picasso.get()
             .load(Uri.parse(url))
@@ -33,11 +40,17 @@ fun ImageView.loadUrl(url: String){
             .into(this)
 }
 
+/**
+ * 判断是否登录
+ */
 fun isLogined(): Boolean {
 
     return BaseApplicatoin.getBoxStoreInstance().boxFor(UserInfo::class.java).count() > 0
 }
 
+/**
+ * 判断进程是否在后台
+ */
 fun isProcessInBackground(context: Context): Boolean{
 
     var isInBackground = true
