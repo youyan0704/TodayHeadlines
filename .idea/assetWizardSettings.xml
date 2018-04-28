@@ -33,8 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_edit_black_24dp" />
-                            <entry key="sourceFile" value="$USER_HOME$" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_people_add" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/people-10-个人.svg" />
                           </map>
                         </option>
                       </PersistentState>

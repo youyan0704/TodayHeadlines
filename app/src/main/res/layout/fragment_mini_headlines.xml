@@ -1,14 +1,73 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:showDividers="middle"
+    android:divider="@drawable/linearlayout_vertical_line_divider"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.youyan.android.headlines.ui.fragement.main.MiniHeadlinesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:gravity="center"
+    <LinearLayout
+        android:id="@+id/mini_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/title_mini_headlines" />
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/padding_5dp"
+        android:paddingHorizontal="@dimen/paddingHorizontal_10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/find_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_people_add"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="找人"
+                android:textSize="@dimen/text_small_size" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/text_hight_size"
+            android:text="微头条"/>
+
+        <LinearLayout
+            android:id="@+id/id_publish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_camera_black_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发布"
+                android:textSize="@dimen/text_small_size" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
