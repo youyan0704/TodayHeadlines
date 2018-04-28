@@ -3,18 +3,21 @@ package com.youyan.android.headlines.ui.activity
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.View
 import android.webkit.*
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
 import com.youyan.android.headlines.R
-import com.youyan.android.headlines.ui.base.BaseActivity
-import com.youyan.android.headlines.ui.base.BasePresenter
 import kotlinx.android.synthetic.main.activity_webview.*
 import kotlinx.android.synthetic.main.include_news_detail_tool_bar.*
 import kotlinx.android.synthetic.main.include_news_detail_top.*
 import org.jetbrains.anko.toast
 
-class WebviewActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
+
+class WebviewActivity : AppCompatActivity(),View.OnClickListener {
+
+    lateinit var loadingDialog : QMUITipDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +29,11 @@ class WebviewActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
     }
 
     private fun initView() {
+        loadingDialog = QMUITipDialog.Builder(this)
+                .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
+                .setTipWord("奋力加载中...")
+                .create()
+
         iv_back.setOnClickListener(this)
         write_comment.setOnClickListener(this)
         comment_count.setOnClickListener(this)
@@ -59,11 +67,13 @@ class WebviewActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
             }
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                loadingDialog.show()
                 super.onPageStarted(view, url, favicon)
 
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
+                loadingDialog.dismiss()
                 super.onPageFinished(view, url)
             }
 
@@ -92,9 +102,12 @@ class WebviewActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        return super.onKeyDown(keyCode, event)
+
         if (keyCode == KeyEvent.KEYCODE_BACK && webContent.canGoBack()){
             webContent.goBack()
+            return false
         }
+
+        return super.onKeyDown(keyCode, event)
     }
 }
