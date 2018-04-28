@@ -34,8 +34,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_people_add" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/people-10-个人.svg" />
+                            <entry key="outputName" value="ic_forward" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/转发 (3).svg" />
                           </map>
                         </option>
                       </PersistentState>

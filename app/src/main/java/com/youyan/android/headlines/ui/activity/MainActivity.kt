@@ -1,11 +1,12 @@
 package com.youyan.android.headlines.ui.activity
 
-import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.squareup.picasso.Picasso
+import android.view.WindowManager
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.AppManager
 import com.youyan.android.headlines.app.BaseApplicatoin
@@ -23,7 +24,6 @@ import com.youyan.android.headlines.ui.model.UserInfo
 import com.youyan.android.headlines.utils.LoggerUtil
 import io.objectbox.Box
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -73,7 +73,6 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         switchFragment(0)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
-        LoggerUtil.i("isProcessInBackground", isProcessInBackground(this).toString())
 
         initView()
         initData()
@@ -82,17 +81,17 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
 
     private fun initView() {
         id_me.setOnClickListener(this)
+        id_search.setOnClickListener(this)
         id_publish.setOnClickListener(this)
 
     }
 
     private fun initData() {
         userInfoBox = BaseApplicatoin.getBoxStoreInstance().boxFor(UserInfo::class.java)
-        /*userInfo = UserInfo(0,1,"http://cdnq.duitang.com/uploads/item/201504/04/20150404H3338_N8Wir.jpeg",
-                "",true,12,
-                "xiaoY","",true,"")
-        userInfoBox.put(userInfo)*/
-        userInfoBox.removeAll()
+        userInfo = UserInfo(0,1,"http://cdnq.duitang.com/uploads/item/201504/04/20150404H3338_N8Wir.jpeg",
+                "",true,12, "xiaoY","",true,"")
+        userInfoBox.put(userInfo)
+//        userInfoBox.removeAll()
 
         if (isLogined()){
             userInfo = userInfoBox.all.first()
@@ -110,11 +109,16 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
     }
 
     private fun setToolbar(i: Int){
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         when(i){
             0,1 -> {
+                QMUIStatusBarHelper.setStatusBarDarkMode(this)
+                window.statusBarColor = resources.getColor(R.color.colorPrimaryDark)
                 if (toolbar.visibility == View.GONE) toolbar.visibility = View.VISIBLE
             }
             2,3 -> {
+                QMUIStatusBarHelper.setStatusBarLightMode(this)
+                window.statusBarColor = resources.getColor(R.color.material_grey_50)
                 if (toolbar.visibility == View.VISIBLE) toolbar.visibility = View.GONE
             }
         }
