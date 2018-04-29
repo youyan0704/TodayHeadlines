@@ -34,7 +34,7 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.WebviewActivity"
+            android:name=".ui.activity.WebViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity

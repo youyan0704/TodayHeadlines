@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.include_news_detail_top.*
 import org.jetbrains.anko.toast
 
 
-class WebviewActivity : AppCompatActivity(),View.OnClickListener {
+class WebViewActivity : AppCompatActivity(),View.OnClickListener {
 
     lateinit var loadingDialog : QMUITipDialog
 

@@ -1,6 +1,5 @@
 package com.youyan.android.headlines.ui.fragement.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,8 +18,8 @@ import kotlinx.android.synthetic.main.fragment_recommend.*
 
 class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
-    var recommendResources = ArrayList<NewsData>()
-    lateinit var adapter: RecommendItemAdapter
+    private var recommendResources = ArrayList<NewsData>()
+    private lateinit var adapter: RecommendItemAdapter
     var isQMUIPullRefreshLayoutVisiable: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

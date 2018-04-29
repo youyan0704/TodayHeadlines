@@ -16,11 +16,6 @@ import java.util.ArrayList
 
 class HomeFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -49,7 +44,7 @@ class HomeFragment : Fragment() {
         }
 
         contentViewPager.adapter = HomeFragmentAdapter(fragments, titleList, fragmentManager)
-        contentViewPager.offscreenPageLimit = titleList.size
+//        contentViewPager.offscreenPageLimit = titleList.size
 
         tabSegment.run {
             setupWithViewPager(contentViewPager)
@@ -58,8 +53,8 @@ class HomeFragment : Fragment() {
 
     }
 
-    class HomeFragmentAdapter(val fragments: List<Fragment>,
-                              val nameList: List<String>,
+    class HomeFragmentAdapter(private val fragments: List<Fragment>,
+                              private val nameList: List<String>,
                               fm: FragmentManager?) : FragmentPagerAdapter(fm){
 
         override fun getItem(position: Int): Fragment {

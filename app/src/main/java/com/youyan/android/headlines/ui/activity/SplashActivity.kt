@@ -2,6 +2,8 @@ package com.youyan.android.headlines.ui.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.youyan.android.headlines.R
 import io.reactivex.Observable
@@ -15,7 +17,8 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        QMUIStatusBarHelper.translucent(this)
+//        QMUIStatusBarHelper.translucent(this)
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     override fun onStart() {

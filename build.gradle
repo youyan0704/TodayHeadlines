@@ -16,6 +16,7 @@ buildscript {
     ext.circleimageview_version = '2.2.0'
     ext.takephoto_library_version = '4.1.0'
     ext.objectboxVersion = '1.4.4'
+
     repositories {
         google()
         jcenter()
@@ -24,7 +25,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
         classpath 'com.mob.sdk:MobSDK:+'
@@ -38,6 +39,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 

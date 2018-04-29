@@ -42,22 +42,18 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                setToolbar(0)
                 switchFragment(0)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_xigua_video -> {
-                setToolbar(1)
                 switchFragment(1)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_mini_headlines -> {
-                setToolbar(2)
                 switchFragment(2)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_mini_video -> {
-                setToolbar(3)
                 switchFragment(3)
                 return@OnNavigationItemSelectedListener true
             }
@@ -70,7 +66,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
-        switchFragment(0)
+        switchFragment(2)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
 
@@ -130,6 +126,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         hidenAllFragments(beginTransaction)
         when (i) {
             0 -> {
+                setToolbar(0)
                 if (homeFragment == null) {
                     homeFragment = HomeFragment()
                     beginTransaction.add(R.id.content_main, homeFragment, "homeFragment")
@@ -138,6 +135,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
                 }
             }
             1 -> {
+                setToolbar(1)
                 if (xiguaFragment == null) {
                     xiguaFragment = XiGuaFragment()
                     beginTransaction.add(R.id.content_main, xiguaFragment, "xiguaFragment")
@@ -146,14 +144,16 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
                 }
             }
             2 -> {
+                setToolbar(2)
                 if (miniHeadlinesFragment == null) {
-                    miniHeadlinesFragment = MiniHeadlinesFragment()
+                    miniHeadlinesFragment = MiniHeadlinesFragment.newInstance()
                     beginTransaction.add(R.id.content_main, miniHeadlinesFragment, "miniHeadlinesFragment")
                 } else {
                     beginTransaction.show(miniHeadlinesFragment)
                 }
             }
             3 -> {
+                setToolbar(3)
                 if (miniVideoFragment == null) {
                     miniVideoFragment = MiniVideoFragment()
                     beginTransaction.add(R.id.content_main, miniVideoFragment, "miniVideoFragment")

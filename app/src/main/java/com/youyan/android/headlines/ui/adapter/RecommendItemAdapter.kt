@@ -3,7 +3,6 @@ package com.youyan.android.headlines.ui.adapter
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -11,7 +10,7 @@ import com.qmuiteam.qmui.widget.QMUIAnimationListView
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.common.CommonViewHolder
-import com.youyan.android.headlines.ui.activity.WebviewActivity
+import com.youyan.android.headlines.ui.activity.WebViewActivity
 import com.youyan.android.headlines.ui.model.NewsData
 import com.youyan.android.headlines.utils.DateUtil
 import java.util.*
@@ -20,7 +19,7 @@ import java.util.*
  * Created by android on 3/26/18.
  */
 class RecommendItemAdapter(val context: Context?,
-                           val recommends: ArrayList<NewsData>) : BaseAdapter() {
+                           private val recommends: ArrayList<NewsData>) : BaseAdapter() {
 
     lateinit var listener: OnItemClickListener
 
@@ -60,11 +59,12 @@ class RecommendItemAdapter(val context: Context?,
         })
 
         viewHolder.convertView!!.setOnClickListener(View.OnClickListener {
-            newsData.read = true
+
             notifyDataSetChanged()
-            val intent = Intent(context,WebviewActivity::class.java)
+            val intent = Intent(context,WebViewActivity::class.java)
             intent.putExtra("url",newsData.article_url)
             context?.startActivity(intent)
+            newsData.read = true
         })
 
         return viewHolder.convertView!!

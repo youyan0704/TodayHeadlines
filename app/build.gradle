@@ -43,25 +43,25 @@ dependencies {
     //noinspection GradleCompatible
     implementation "com.android.support:appcompat-v7:27.0.1"
     implementation "com.android.support:design:26.1.0"
-    implementation "com.android.support.constraint:constraint-layout:1.0.2"
+    implementation "com.android.support.constraint:constraint-layout:1.1.0"
     implementation "com.android.support:support-vector-drawable:26.1.0"
     implementation "com.android.support:support-v4:26.1.0"
     testImplementation "junit:junit:4.12"
-    androidTestImplementation "com.android.support.test:runner:1.0.1"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.1"
+    androidTestImplementation "com.android.support.test:runner:1.0.2"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
     //图片缓存库 picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
-    compile "com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0"
+    implementation "com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0"
     //QMUI
-    compile "com.qmuiteam:qmui:$qmui_version"
+    implementation "com.qmuiteam:qmui:$qmui_version"
     //okhttp3
-    compile "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     //引入Log拦截器，方便DEBUG模式输出log信息
-    compile "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     //html解析
-    compile "org.jsoup:jsoup:$jsoup_version"
+    implementation "org.jsoup:jsoup:$jsoup_version"
     //anko
-    compile "org.jetbrains.anko:anko:$anko_version"
+    implementation "org.jetbrains.anko:anko:$anko_version"
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
@@ -71,21 +71,23 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     //dagger2
-    compile "com.google.dagger:dagger:$dagger_version"
-    compile "com.google.dagger:dagger-android-support:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     //rxlifecycle
-    compile "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rxlifecycle_version"
-    compile "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycle_version"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rxlifecycle_version"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycle_version"
     //circleimageview
     implementation "de.hdodenhof:circleimageview:$circleimageview_version"
     //takephoto_library
 //    compile "com.jph.takephoto:takephoto_library:$takephoto_library_version"
     //objectbox
-    compile "io.objectbox:objectbox-android:$objectboxVersion"
-    compile "io.objectbox:objectbox-kotlin:$objectboxVersion"
+    implementation "io.objectbox:objectbox-android:$objectboxVersion"
+    implementation "io.objectbox:objectbox-kotlin:$objectboxVersion"
     kapt "io.objectbox:objectbox-processor:$objectboxVersion"
     annotationProcessor "io.objectbox:objectbox-processor:$objectboxVersion"
+    //BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 
 }

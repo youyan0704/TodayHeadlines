@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.WebviewActivity"
+    tools:context=".ui.activity.WebViewActivity"
     android:orientation="vertical"
     android:showDividers="middle"
     android:divider="@drawable/linearlayout_vertical_line_divider">

@@ -102,7 +102,7 @@ data class NewsData(
 		val title: String,
 		val ugc_recommend: UgcRecommend,
 		val url: String,
-//		val user_info: UserInfo,
+		val user_info: UserInfo,
 		val user_repin: Int,
 		val user_verified: Int,
 		val verified_content: String,
