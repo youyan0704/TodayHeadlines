@@ -1,0 +1,9 @@
+package com.youyan.android.headlines.ui.view
+
+import com.youyan.android.headlines.ui.base.BaseView
+import com.youyan.android.headlines.ui.model.NewsResponse
+
+interface MiniHeadlinesView : BaseView {
+
+    fun onGetMiniHeadlinesResponseResult(newsResponse: NewsResponse)
+}

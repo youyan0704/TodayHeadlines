@@ -34,6 +34,7 @@ fun getHtml(url: String): String {
  * 图片加载扩展
  */
 fun ImageView.loadUrl(url: String){
+    if (url.isEmpty()) return
     Picasso.get()
             .load(Uri.parse(url))
             .placeholder(R.mipmap.app_logo)

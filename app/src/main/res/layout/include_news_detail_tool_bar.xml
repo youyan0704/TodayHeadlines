@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="40dp"
+    android:id="@+id/news_detail_tool_bar"
     android:orientation="vertical"
     android:background="@color/material_grey_50">
 

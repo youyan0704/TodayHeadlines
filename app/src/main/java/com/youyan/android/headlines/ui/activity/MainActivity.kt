@@ -1,8 +1,6 @@
 package com.youyan.android.headlines.ui.activity
 
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.support.design.widget.BottomNavigationView
 import android.view.View
 import android.view.WindowManager
@@ -11,7 +9,6 @@ import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.AppManager
 import com.youyan.android.headlines.app.BaseApplicatoin
 import com.youyan.android.headlines.common.isLogined
-import com.youyan.android.headlines.common.isProcessInBackground
 import com.youyan.android.headlines.common.loadUrl
 import com.youyan.android.headlines.ui.fragement.main.HomeFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniHeadlinesFragment
@@ -21,7 +18,6 @@ import com.youyan.android.headlines.reflect.BottomNavigationViewHelper
 import com.youyan.android.headlines.ui.base.BaseActivity
 import com.youyan.android.headlines.ui.base.BasePresenter
 import com.youyan.android.headlines.ui.model.UserInfo
-import com.youyan.android.headlines.utils.LoggerUtil
 import io.objectbox.Box
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -66,7 +62,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
-        switchFragment(2)
+        switchFragment(0)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
 
@@ -123,7 +119,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
     private fun switchFragment(i: Int) {
         val fragmentManager = supportFragmentManager
         val beginTransaction = fragmentManager.beginTransaction()
-        hidenAllFragments(beginTransaction)
+        hiddenAllFragments(beginTransaction)
         when (i) {
             0 -> {
                 setToolbar(0)
@@ -165,7 +161,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         beginTransaction.commit()
     }
 
-    private fun hidenAllFragments(beginTransaction: android.support.v4.app.FragmentTransaction) {
+    private fun hiddenAllFragments(beginTransaction: android.support.v4.app.FragmentTransaction) {
         if (homeFragment != null) beginTransaction.hide(homeFragment)
         if (xiguaFragment != null) beginTransaction.hide(xiguaFragment)
         if (miniHeadlinesFragment != null) beginTransaction.hide(miniHeadlinesFragment)

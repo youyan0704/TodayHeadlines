@@ -1,30 +1,32 @@
 package com.youyan.android.headlines.ui.fragement.main
 
+import android.graphics.Canvas
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.gson.Gson
 import com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
 
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.injection.component.DaggerRecommendFragmentComponent
 import com.youyan.android.headlines.injection.module.LifecycleProviderModule
+import com.youyan.android.headlines.ui.ItemDecoration.RecyclerViewDivider
 import com.youyan.android.headlines.ui.adapter.MiniHeadlinesAdapter
 import com.youyan.android.headlines.ui.base.BaseFragment
-import com.youyan.android.headlines.ui.model.NewsData
-import com.youyan.android.headlines.ui.presenter.WeiTouTiaoPresenter
-import com.youyan.android.headlines.ui.view.WeiTouTiaoView
-import com.youyan.android.headlines.utils.LoggerUtil
+import com.youyan.android.headlines.ui.model.MiniHeadlines
+import com.youyan.android.headlines.ui.model.NewsResponse
+import com.youyan.android.headlines.ui.presenter.MiniHeadlinesPresenter
+import com.youyan.android.headlines.ui.view.MiniHeadlinesView
 import kotlinx.android.synthetic.main.fragment_mini_headlines.*
+import org.jetbrains.anko.support.v4.toast
 
-class MiniHeadlinesFragment : BaseFragment<WeiTouTiaoPresenter>(),WeiTouTiaoView,View.OnClickListener {
+class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlinesView,View.OnClickListener {
 
     private lateinit var miniHeadlinesAdapter: MiniHeadlinesAdapter
-    private var newsDatas = ArrayList<NewsData>()
-    private var isQMUIPullRefreshLayoutVisiable: Boolean = false
-
+    private var newsDatas = ArrayList<MiniHeadlines>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -57,8 +59,7 @@ class MiniHeadlinesFragment : BaseFragment<WeiTouTiaoPresenter>(),WeiTouTiaoView
             override fun onMoveTarget(offset: Int) {}
 
             override fun onRefresh() {
-                isQMUIPullRefreshLayoutVisiable = true
-                mBasePresenter.getWeiTouTiaoResponse()
+                mBasePresenter.getMiniHeadlinesResponse()
             }
 
         })
@@ -67,28 +68,31 @@ class MiniHeadlinesFragment : BaseFragment<WeiTouTiaoPresenter>(),WeiTouTiaoView
     private fun initData() {
 
         recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.addItemDecoration(object : RecyclerViewDivider(context,LinearLayoutManager.HORIZONTAL,
+                20,0xFAFAFA){})
         miniHeadlinesAdapter = MiniHeadlinesAdapter(R.layout.fragment_mini_headlines_item, newsDatas)
         recyclerView.adapter = miniHeadlinesAdapter
-        mBasePresenter.getWeiTouTiaoResponse()
+        mBasePresenter.getMiniHeadlinesResponse()
     }
 
-    override fun onGetWeiResponseResult(newsDataList: ArrayList<NewsData>) {
-        if (isQMUIPullRefreshLayoutVisiable){
-            isQMUIPullRefreshLayoutVisiable = false
-            pullRefreshLayout.finishRefresh()
+    override fun onGetMiniHeadlinesResponseResult(newsResponse: NewsResponse) {
+        toast(newsResponse.tips.display_info)
+
+        pullRefreshLayout.finishRefresh()
+
+        for (data in newsResponse.data){
+            newsDatas.add(Gson().fromJson(data.content,MiniHeadlines::class.java))
         }
-        LoggerUtil.i("newsDataList",newsDataList.size.toString())
-        newsDatas = newsDataList
         miniHeadlinesAdapter.setNewData(newsDatas)
     }
 
     override fun onClick(v: View) {
         when(v.id){
             R.id.find_friend -> {
-
+                toast("找人")
             }
             R.id.id_publish -> {
-
+                toast("发布")
             }
         }
     }

@@ -31,7 +31,7 @@ class WebViewActivity : AppCompatActivity(),View.OnClickListener {
     private fun initView() {
         loadingDialog = QMUITipDialog.Builder(this)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
-                .setTipWord("奋力加载中...")
+                .setTipWord("努力加载中...")
                 .create()
 
         iv_back.setOnClickListener(this)
@@ -67,12 +67,14 @@ class WebViewActivity : AppCompatActivity(),View.OnClickListener {
             }
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                news_detail_tool_bar.visibility = View.GONE
                 loadingDialog.show()
                 super.onPageStarted(view, url, favicon)
 
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
+                news_detail_tool_bar.visibility = View.VISIBLE
                 loadingDialog.dismiss()
                 super.onPageFinished(view, url)
             }

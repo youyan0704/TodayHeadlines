@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="@dimen/padding_10dp"
     android:orientation="vertical">
 
@@ -93,7 +93,8 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_5dp"
+        android:layout_marginVertical="@dimen/margin_5dp"
+        android:lineSpacingMultiplier="1.2"
         android:maxLines="6"
         android:text="生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱.
 生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱.
@@ -102,11 +103,11 @@
 生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱.
 生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱."/>
 
-    <View
+    <!--<View
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginTop="@dimen/margin_5dp"
-        android:background="@drawable/linearlayout_vertical_line_divider"/>
+        android:background="@drawable/linearlayout_vertical_line_divider"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
