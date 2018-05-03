@@ -1,9 +1,7 @@
 package com.youyan.android.headlines.ui.presenter
 
-import com.google.gson.Gson
 import com.youyan.android.headlines.ui.base.BasePresenter
-import com.youyan.android.headlines.ui.model.NewsData
-import com.youyan.android.headlines.ui.model.NewsResponse
+import com.youyan.android.headlines.ui.model.HeadlinesResponse
 import com.youyan.android.headlines.ui.view.MiniHeadlinesView
 import com.youyan.android.headlines.utils.LoggerUtil
 import io.reactivex.Observer
@@ -29,7 +27,7 @@ class MiniHeadlinesPresenter @Inject constructor(): BasePresenter<MiniHeadlinesV
                 .compose(lifecycleProvider.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<NewsResponse> {
+                .subscribe(object : Observer<HeadlinesResponse> {
                     override fun onComplete() {
                         LoggerUtil.i("NewsResponse","onCompleted")
                     }
@@ -37,7 +35,7 @@ class MiniHeadlinesPresenter @Inject constructor(): BasePresenter<MiniHeadlinesV
                     override fun onSubscribe(d: Disposable) {
                     }
 
-                    override fun onNext(t: NewsResponse) {
+                    override fun onNext(t: HeadlinesResponse) {
 //                        LoggerUtil.i("onGetMiniHeadlinesResponseResult",t.toString())
                         mBaseView.onGetMiniHeadlinesResponseResult(t)
                     }

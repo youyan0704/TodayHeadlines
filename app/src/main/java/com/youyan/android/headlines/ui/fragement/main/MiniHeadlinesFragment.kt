@@ -16,17 +16,18 @@ import com.youyan.android.headlines.injection.module.LifecycleProviderModule
 import com.youyan.android.headlines.ui.ItemDecoration.RecyclerViewDivider
 import com.youyan.android.headlines.ui.adapter.MiniHeadlinesAdapter
 import com.youyan.android.headlines.ui.base.BaseFragment
+import com.youyan.android.headlines.ui.model.HeadlinesResponse
 import com.youyan.android.headlines.ui.model.MiniHeadlines
-import com.youyan.android.headlines.ui.model.NewsResponse
 import com.youyan.android.headlines.ui.presenter.MiniHeadlinesPresenter
 import com.youyan.android.headlines.ui.view.MiniHeadlinesView
+import com.youyan.android.headlines.utils.LoggerUtil
 import kotlinx.android.synthetic.main.fragment_mini_headlines.*
 import org.jetbrains.anko.support.v4.toast
 
 class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlinesView,View.OnClickListener {
 
     private lateinit var miniHeadlinesAdapter: MiniHeadlinesAdapter
-    private var newsDatas = ArrayList<MiniHeadlines>()
+    private var miniHeadlines = ArrayList<MiniHeadlines>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -70,20 +71,20 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.addItemDecoration(object : RecyclerViewDivider(context,LinearLayoutManager.HORIZONTAL,
                 20,0xFAFAFA){})
-        miniHeadlinesAdapter = MiniHeadlinesAdapter(R.layout.fragment_mini_headlines_item, newsDatas)
+        miniHeadlinesAdapter = MiniHeadlinesAdapter(R.layout.fragment_mini_headlines_item, miniHeadlines)
         recyclerView.adapter = miniHeadlinesAdapter
         mBasePresenter.getMiniHeadlinesResponse()
     }
 
-    override fun onGetMiniHeadlinesResponseResult(newsResponse: NewsResponse) {
-        toast(newsResponse.tips.display_info)
+    override fun onGetMiniHeadlinesResponseResult(headlinesResponse: HeadlinesResponse) {
+        toast(headlinesResponse.tips.display_info)
 
         pullRefreshLayout.finishRefresh()
 
-        for (data in newsResponse.data){
-            newsDatas.add(Gson().fromJson(data.content,MiniHeadlines::class.java))
+        for (data in headlinesResponse.data){
+            miniHeadlines.add(Gson().fromJson(data.content,MiniHeadlines::class.java))
         }
-        miniHeadlinesAdapter.setNewData(newsDatas)
+        miniHeadlinesAdapter.setNewData(miniHeadlines)
     }
 
     override fun onClick(v: View) {

@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.youyan.android.headlines.R
-import com.youyan.android.headlines.ui.fragement.home.RecommendFragment
+import com.youyan.android.headlines.ui.fragement.home.HeadlinesFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.ArrayList
 
@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
 
         val fragments = ArrayList<Fragment>()
         for (i in 1.. titleList.size){
-            fragments.add(RecommendFragment())
+            fragments.add(HeadlinesFragment())
         }
 
         contentViewPager.adapter = HomeFragmentAdapter(fragments, titleList, fragmentManager)

@@ -62,7 +62,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
-        switchFragment(0)
+        switchFragment(2)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
 
@@ -80,9 +80,9 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
 
     private fun initData() {
         userInfoBox = BaseApplicatoin.getBoxStoreInstance().boxFor(UserInfo::class.java)
-        userInfo = UserInfo(0,1,"http://cdnq.duitang.com/uploads/item/201504/04/20150404H3338_N8Wir.jpeg",
+        /*userInfo = UserInfo(0,1,"http://cdnq.duitang.com/uploads/item/201504/04/20150404H3338_N8Wir.jpeg",
                 "",true,12, "xiaoY","",true,"")
-        userInfoBox.put(userInfo)
+        userInfoBox.put(userInfo)*/
 //        userInfoBox.removeAll()
 
         if (isLogined()){

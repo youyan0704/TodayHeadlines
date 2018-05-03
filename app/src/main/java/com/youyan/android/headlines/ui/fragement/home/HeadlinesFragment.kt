@@ -9,17 +9,17 @@ import com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.injection.component.DaggerRecommendFragmentComponent
 import com.youyan.android.headlines.injection.module.LifecycleProviderModule
-import com.youyan.android.headlines.ui.adapter.RecommendItemAdapter
+import com.youyan.android.headlines.ui.adapter.HeadlinesAdapter
 import com.youyan.android.headlines.ui.base.BaseFragment
-import com.youyan.android.headlines.ui.model.NewsData
-import com.youyan.android.headlines.ui.presenter.NewsPresenter
-import com.youyan.android.headlines.ui.view.NewsView
+import com.youyan.android.headlines.ui.model.Headlines
+import com.youyan.android.headlines.ui.presenter.HeadlinesPresenter
+import com.youyan.android.headlines.ui.view.HeadlinesView
 import kotlinx.android.synthetic.main.fragment_recommend.*
 
-class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
+class HeadlinesFragment: BaseFragment<HeadlinesPresenter>(),HeadlinesView {
 
-    private var recommendResources = ArrayList<NewsData>()
-    private lateinit var adapter: RecommendItemAdapter
+    private var headlinesRes = ArrayList<Headlines>()
+    private lateinit var adapter: HeadlinesAdapter
     var isQMUIPullRefreshLayoutVisiable: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +44,10 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
         })
 
 
-        adapter = RecommendItemAdapter(context,recommendResources)
+        adapter = HeadlinesAdapter(context,headlinesRes)
         animationListView.adapter = adapter
         
-/*        adapter.setOnItemClickListener(object : RecommendItemAdapter.OnItemClickListener {
+/*        adapter.setOnItemClickListener(object : HeadlinesAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
             }
             
@@ -65,16 +65,14 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
     }
 
-    override fun onGetNewsResponseResult(newsDataList: ArrayList<NewsData>) {
-
+    override fun onGetHeadlinesResponseResult(headlinesList: ArrayList<Headlines>) {
         if (isQMUIPullRefreshLayoutVisiable){
             isQMUIPullRefreshLayoutVisiable = false
             pullRefreshLayout.finishRefresh()
         }
 
-        recommendResources = newsDataList
-        adapter.update(recommendResources)
-
+        headlinesRes = headlinesList
+        adapter.update(headlinesRes)
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
@@ -82,7 +80,7 @@ class RecommendFragment: BaseFragment<NewsPresenter>(),NewsView {
 
         initInjection()
 
-        if (isVisibleToUser && recommendResources.size == 0) {
+        if (isVisibleToUser && headlinesRes.size == 0) {
             mBasePresenter.getNewsResponse()
         }
     }
