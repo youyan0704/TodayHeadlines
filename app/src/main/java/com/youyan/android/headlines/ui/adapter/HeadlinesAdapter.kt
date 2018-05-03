@@ -26,7 +26,7 @@ class HeadlinesAdapter(val context: Context?,
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val viewHolder = CommonViewHolder.getViewHolder(context, R.layout.fragment_recommend_item, position, convertView, parent)
         val headlines = headlinesList[position]
-        viewHolder.setText(R.id.title,headlines.title)
+        viewHolder.setText(R.id.title,headlines.title?:"")
         viewHolder.setTextColor(R.id.title,if (headlines.read) Color.GRAY else Color.BLACK)
         if (headlines.has_image){
             viewHolder.getView<ImageView>(R.id.image)!!.visibility = View.VISIBLE
@@ -37,7 +37,7 @@ class HeadlinesAdapter(val context: Context?,
         viewHolder.isVisiable(R.id.category,if (headlines.hot == 0) View.GONE else View.VISIBLE)
         viewHolder.setText(R.id.category,if (headlines.hot == 0) "" else "热")
 
-        viewHolder.setText(R.id.source,headlines.source)
+        viewHolder.setText(R.id.source,headlines.source?:"")
         viewHolder.setText(R.id.comment, headlines.comment_count.toString() + "评论")
         viewHolder.setText(R.id.publishTime, DateUtil.convertSecond2Day(headlines.publish_time.toLong(),null))
         viewHolder.isVisiable(R.id.delete,View.VISIBLE)
