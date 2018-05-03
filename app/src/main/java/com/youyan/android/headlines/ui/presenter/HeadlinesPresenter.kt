@@ -14,13 +14,14 @@ class HeadlinesPresenter @Inject constructor(): BasePresenter<HeadlinesView>() {
 
     fun getNewsResponse(){
         apiService.getHeadlinesResponse(0,System.currentTimeMillis())
+                .distinct()
                 .map { t -> t.data }
                 .map { t ->
                     val headlinesList:ArrayList<Headlines> = ArrayList()
                     for (data in t){
                         val headlines = Gson().fromJson(data.content,Headlines::class.java)
-                        if (headlines.has_image)
-                            headlinesList.add(headlines)
+//                        if (headlines.has_image)
+                        headlinesList.add(headlines)
                     }
                     headlinesList
                 }

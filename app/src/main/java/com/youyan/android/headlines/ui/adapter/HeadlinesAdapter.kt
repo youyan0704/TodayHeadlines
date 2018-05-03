@@ -28,7 +28,12 @@ class HeadlinesAdapter(val context: Context?,
         val headlines = headlinesList[position]
         viewHolder.setText(R.id.title,headlines.title)
         viewHolder.setTextColor(R.id.title,if (headlines.read) Color.GRAY else Color.BLACK)
-        viewHolder.setImageFromUrl(R.id.image, headlines.middle_image.url)
+        if (headlines.has_image){
+            viewHolder.getView<ImageView>(R.id.image)!!.visibility = View.VISIBLE
+            viewHolder.setImageFromUrl(R.id.image, headlines.middle_image.url)
+        }else{
+            viewHolder.getView<ImageView>(R.id.image)!!.visibility = View.GONE
+        }
         viewHolder.isVisiable(R.id.category,if (headlines.hot == 0) View.GONE else View.VISIBLE)
         viewHolder.setText(R.id.category,if (headlines.hot == 0) "" else "热")
 

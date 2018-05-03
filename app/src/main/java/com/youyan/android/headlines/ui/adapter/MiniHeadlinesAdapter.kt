@@ -25,11 +25,9 @@ class MiniHeadlinesAdapter(ResId : Int,dataList : ArrayList<MiniHeadlines>)
             helper.setText(R.id.content,miniHeadlines.content)
 //            helper.setText(R.id.share,miniHeadlines.share_count.toString())
             helper.setText(R.id.comment_count,miniHeadlines.comment_count.toString())
-            helper.setText(R.id.like,miniHeadlines.digg_count.toString())
+//            helper.setText(R.id.like,miniHeadlines.digg_count.toString())
 
         }
-
-
     }
 
 

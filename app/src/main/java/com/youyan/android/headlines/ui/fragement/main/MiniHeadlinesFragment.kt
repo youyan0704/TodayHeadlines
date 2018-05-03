@@ -1,9 +1,7 @@
 package com.youyan.android.headlines.ui.fragement.main
 
-import android.graphics.Canvas
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,7 +60,6 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
             override fun onRefresh() {
                 mBasePresenter.getMiniHeadlinesResponse()
             }
-
         })
     }
 
@@ -78,13 +75,15 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
 
     override fun onGetMiniHeadlinesResponseResult(headlinesResponse: HeadlinesResponse) {
         toast(headlinesResponse.tips.display_info)
-
         pullRefreshLayout.finishRefresh()
-
+        miniHeadlines.clear()
         for (data in headlinesResponse.data){
-            miniHeadlines.add(Gson().fromJson(data.content,MiniHeadlines::class.java))
+            val miniHeadline = Gson().fromJson(data.content,MiniHeadlines::class.java)
+            miniHeadlines.add(miniHeadline)
         }
-        miniHeadlinesAdapter.setNewData(miniHeadlines)
+        LoggerUtil.i("miniHeadlines",miniHeadlines.size.toString())
+        miniHeadlinesAdapter.addData(0,miniHeadlines)
+
     }
 
     override fun onClick(v: View) {

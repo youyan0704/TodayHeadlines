@@ -62,7 +62,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
-        switchFragment(2)
+        switchFragment(0)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
 

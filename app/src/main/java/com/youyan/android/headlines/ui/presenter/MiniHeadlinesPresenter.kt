@@ -14,34 +14,25 @@ class MiniHeadlinesPresenter @Inject constructor(): BasePresenter<MiniHeadlinesV
 
     fun getMiniHeadlinesResponse(){
         apiService.getDataResponse("weitoutiao",0,System.currentTimeMillis())
-//                .map { t -> t.data }
-//                .map { t ->
-//                    val newsData:ArrayList<NewsData> = ArrayList()
-//                    for (data in t){
-//                        val news = Gson().fromJson(data.content,NewsData::class.java)
-//                        LoggerUtil.i("newsGson",news.toString())
-//                            newsData.add(news)
-//                    }
-//                    newsData
-//                }
+                .distinct()
                 .compose(lifecycleProvider.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<HeadlinesResponse> {
                     override fun onComplete() {
-                        LoggerUtil.i("NewsResponse","onCompleted")
+                        LoggerUtil.i("getMiniHeadlinesResponse","onCompleted")
                     }
 
                     override fun onSubscribe(d: Disposable) {
                     }
 
                     override fun onNext(t: HeadlinesResponse) {
-//                        LoggerUtil.i("onGetMiniHeadlinesResponseResult",t.toString())
+//                        LoggerUtil.i("getMiniHeadlinesResponse",t.toString())
                         mBaseView.onGetMiniHeadlinesResponseResult(t)
                     }
 
                     override fun onError(e: Throwable) {
-                        LoggerUtil.i("NewsResponse",e.message)
+                        LoggerUtil.i("getMiniHeadlinesResponse",e.message)
                     }
 
                 })

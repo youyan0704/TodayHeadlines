@@ -74,7 +74,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_20dp"
             android:layout_gravity="top"
-            android:textSize="@dimen/text_hight_size"
             android:textColor="@color/material_red_400"
             android:textStyle="bold"
             android:text="关注"/>
