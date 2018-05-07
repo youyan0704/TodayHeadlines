@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.widget.ImageView
+import com.airbnb.lottie.LottieAnimationView
 import com.squareup.picasso.Picasso
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.BaseApplicatoin
@@ -44,7 +45,7 @@ fun ImageView.loadUrl(url: String){
 /**
  * 判断是否登录
  */
-fun isLogined(): Boolean {
+fun isLogin(): Boolean {
 
     return BaseApplicatoin.getBoxStoreInstance().boxFor(UserInfo::class.java).count() > 0
 }
@@ -79,4 +80,14 @@ fun isProcessInBackground(context: Context): Boolean{
     }
 
     return isInBackground
+}
+
+/**
+ * loading lottieAnimationView
+ */
+
+fun loading(context: Context){
+    val lottieAnimationView = LottieAnimationView(context)
+    lottieAnimationView.setAnimation(R.raw.loading)
+    lottieAnimationView.playAnimation()
 }

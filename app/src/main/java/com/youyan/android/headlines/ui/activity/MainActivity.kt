@@ -8,7 +8,7 @@ import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.AppManager
 import com.youyan.android.headlines.app.BaseApplicatoin
-import com.youyan.android.headlines.common.isLogined
+import com.youyan.android.headlines.common.isLogin
 import com.youyan.android.headlines.common.loadUrl
 import com.youyan.android.headlines.ui.fragement.main.HomeFragment
 import com.youyan.android.headlines.ui.fragement.main.MiniHeadlinesFragment
@@ -85,7 +85,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
         userInfoBox.put(userInfo)*/
 //        userInfoBox.removeAll()
 
-        if (isLogined()){
+        if (isLogin()){
             userInfo = userInfoBox.all.first()
             loginedIcon.visibility = View.VISIBLE
             unLoginedIcon.visibility = View.GONE

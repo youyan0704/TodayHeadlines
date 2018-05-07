@@ -68,6 +68,8 @@ data class Headlines(
     val item_version: Int,
     val level: Int,
     val log_pb: LogPb,
+    val media_info: MediaInfo,
+    val media_name: String,
     val middle_image: MiddleImage,
     val need_client_impr_recycle: Int,
     val publish_time: Int,
@@ -150,6 +152,19 @@ data class UgcRecommend(
 
 data class LogPb(
     val impr_id: String
+)
+
+data class MediaInfo(
+        val avatar_url: String,
+        val follow: Boolean,
+        val is_star_user: Boolean,
+        val media_id: Long,
+        val name: String,
+        val recommend_reason: String,
+        val recommend_type: Int,
+        val user_id: Long,
+        val user_verified: Boolean,
+        val verified_content: String
 )
 
 data class MiddleImage(

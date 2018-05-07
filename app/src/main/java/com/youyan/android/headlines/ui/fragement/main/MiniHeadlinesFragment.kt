@@ -75,11 +75,17 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
         //开启默认动画
         miniHeadlinesAdapter.openLoadAnimation()
         //开启上拉加载更多
-        miniHeadlinesAdapter.setEnableLoadMore(true)
+//        miniHeadlinesAdapter.setEnableLoadMore(true)
         //当列表滑动到倒数第N个Item的时候(默认是1)回调onLoadMoreRequested方法
 //        miniHeadlinesAdapter.setPreLoadNumber(2)
         //加载更多视图
         miniHeadlinesAdapter.setLoadMoreView(object : MyLoadMoreView() {})
+        //加载更多
+        miniHeadlinesAdapter.setOnLoadMoreListener({
+            isPullUpRefresh = true
+            mBasePresenter.getMiniHeadlinesResponse()
+
+        },recyclerView)
         //点击事件
         miniHeadlinesAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
             startActivity<WebViewActivity>("url" to miniHeadlines[position].share_url) }
@@ -96,25 +102,24 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
     private fun initData() {
 
         mBasePresenter.getMiniHeadlinesResponse()
-
-        miniHeadlinesAdapter.setOnLoadMoreListener {
-            isPullUpRefresh = true
-            mBasePresenter.getMiniHeadlinesResponse()
-        }
     }
 
     override fun onGetMiniHeadlinesResponseResult(headlinesResponse: HeadlinesResponse) {
         pullRefreshLayout.finishRefresh()
+        if (headlinesResponse.data.isEmpty()){
+
+        }
         miniHeadlines.clear()
         for (data in headlinesResponse.data){
             val miniHeadline = Gson().fromJson(data.content,MiniHeadlines::class.java)
-            miniHeadlines.add(miniHeadline)
+            if (miniHeadline.user != null)
+                miniHeadlines.add(miniHeadline)
         }
-        LoggerUtil.i("miniHeadlines",miniHeadlines.size.toString())
         if (isPullUpRefresh){
             miniHeadlinesAdapter.addData(miniHeadlines)
+            miniHeadlinesAdapter.loadMoreComplete()
+
         } else{
-            toast(headlinesResponse.tips.display_info)
             miniHeadlinesAdapter.addData(0,miniHeadlines)
         }
 

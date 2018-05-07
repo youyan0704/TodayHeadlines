@@ -99,11 +99,16 @@ dependencies {
     //    compile "com.jph.takephoto:takephoto_library:$takephoto_library_version"
 
     //objectbox
-    implementation "io.objectbox:objectbox-android:$objectboxVersion"
-    implementation "io.objectbox:objectbox-kotlin:$objectboxVersion"
-    kapt "io.objectbox:objectbox-processor:$objectboxVersion"
-    annotationProcessor "io.objectbox:objectbox-processor:$objectboxVersion"
+    implementation "io.objectbox:objectbox-android:$objectbox_version"
+    implementation "io.objectbox:objectbox-kotlin:$objectbox_version"
+    kapt "io.objectbox:objectbox-processor:$objectbox_version"
+    annotationProcessor "io.objectbox:objectbox-processor:$objectbox_version"
 
     //BaseRecyclerViewAdapterHelper
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30"
+
+    //lottie
+    implementation ("com.airbnb.android:lottie:$lottie_version"){
+        exclude group:"com.android.support"
+    }
 }

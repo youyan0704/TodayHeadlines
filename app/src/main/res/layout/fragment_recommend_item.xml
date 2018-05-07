@@ -44,10 +44,21 @@
             android:divider="@drawable/linearlayout_horizonal_blank_divider">
 
             <TextView
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_small_size_8dp"
+                android:paddingHorizontal="@dimen/paddingHorizontal_2dp"
+                android:background="@drawable/rounded_rectangle_background_red"/>
+
+
+            <TextView
                 android:id="@+id/category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
+                android:visibility="gone"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_small_size_8dp"
                 android:paddingHorizontal="@dimen/paddingHorizontal_2dp"

@@ -16,26 +16,25 @@ class MiniHeadlinesAdapter(ResId : Int,dataList : ArrayList<MiniHeadlines>)
     override fun convert(helper: BaseViewHolder, miniHeadlines: MiniHeadlines) {
         LoggerUtil.i("share_url",miniHeadlines.share_url)
 
-        if (miniHeadlines.user != null){
-            helper.getView<ImageView>(R.id.header).loadUrl(miniHeadlines.user.avatar_url)
-            helper.getView<ImageView>(R.id.dislike).visibility = if (miniHeadlines.show_dislike) View.VISIBLE else View.GONE
+        helper.getView<ImageView>(R.id.header).loadUrl(miniHeadlines.user.avatar_url)
+        helper.getView<ImageView>(R.id.dislike).visibility = if (miniHeadlines.show_dislike) View.VISIBLE else View.GONE
 
-            helper.setText(R.id.username,miniHeadlines.user.name)
-                    .setText(R.id.publishTime,DateUtil.convertSecond2Day(miniHeadlines.create_time.toLong(),null))
-                    .setText(R.id.userCatergray,miniHeadlines.user.verified_content)
-                    .setText(R.id.content,miniHeadlines.content)
+        helper.setText(R.id.username,miniHeadlines.user.name)
+                .setText(R.id.publishTime,DateUtil.convertSecond2Day(miniHeadlines.create_time.toLong(),null))
+                .setText(R.id.userCatergray,miniHeadlines.user.verified_content)
+                .setText(R.id.content,miniHeadlines.content)
 //                    .setText(R.id.share,miniHeadlines.share_count.toString())
-                    .setText(R.id.comment_count,miniHeadlines.comment_count.toString())
+                .setText(R.id.comment_count,miniHeadlines.comment_count.toString())
 //                    .setText(R.id.like,miniHeadlines.digg_count.toString())
-                    .addOnClickListener(R.id.dislike)
-                    .addOnClickListener(R.id.follow)
-                    .addOnClickListener(R.id.share)
-                    .addOnClickListener(R.id.comment_count)
-                    .addOnClickListener(R.id.like)
+                .addOnClickListener(R.id.dislike)
+                .addOnClickListener(R.id.follow)
+                .addOnClickListener(R.id.share)
+                .addOnClickListener(R.id.comment_count)
+                .addOnClickListener(R.id.like)
 
 
 
-        }
+
     }
 
 
