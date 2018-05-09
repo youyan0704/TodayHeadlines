@@ -21,7 +21,6 @@ import com.youyan.android.headlines.ui.model.HeadlinesResponse
 import com.youyan.android.headlines.ui.model.MiniHeadlines
 import com.youyan.android.headlines.ui.presenter.MiniHeadlinesPresenter
 import com.youyan.android.headlines.ui.view.MiniHeadlinesView
-import com.youyan.android.headlines.utils.LoggerUtil
 import kotlinx.android.synthetic.main.fragment_mini_headlines.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
@@ -83,7 +82,7 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
         //加载更多
         miniHeadlinesAdapter.setOnLoadMoreListener({
             isPullUpRefresh = true
-            mBasePresenter.getMiniHeadlinesResponse()
+            initData()
 
         },recyclerView)
         //点击事件
@@ -100,15 +99,12 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
     }
 
     private fun initData() {
-
+        miniHeadlinesAdapter.emptyView = loadingView
         mBasePresenter.getMiniHeadlinesResponse()
     }
 
     override fun onGetMiniHeadlinesResponseResult(headlinesResponse: HeadlinesResponse) {
         pullRefreshLayout.finishRefresh()
-        if (headlinesResponse.data.isEmpty()){
-
-        }
         miniHeadlines.clear()
         for (data in headlinesResponse.data){
             val miniHeadline = Gson().fromJson(data.content,MiniHeadlines::class.java)
@@ -123,6 +119,14 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
             miniHeadlinesAdapter.addData(0,miniHeadlines)
         }
 
+    }
+
+    override fun onGetResultError() {
+        pullRefreshLayout.finishRefresh()
+        miniHeadlinesAdapter.emptyView = errorView
+        errorView.setOnClickListener {
+            initData()
+        }
     }
 
     override fun onClick(v: View) {

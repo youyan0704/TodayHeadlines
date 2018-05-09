@@ -9,19 +9,23 @@ import android.view.View
 import android.webkit.*
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
 import com.youyan.android.headlines.R
+import com.youyan.android.headlines.common.initStatusBarLightMode
+import com.youyan.android.headlines.ui.base.BaseActivity
+import com.youyan.android.headlines.ui.base.BasePresenter
 import kotlinx.android.synthetic.main.activity_webview.*
 import kotlinx.android.synthetic.main.include_news_detail_tool_bar.*
 import kotlinx.android.synthetic.main.include_news_detail_top.*
 import org.jetbrains.anko.toast
 
 
-class WebViewActivity : AppCompatActivity(),View.OnClickListener {
+class WebViewActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
 
     lateinit var loadingDialog : QMUITipDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_webview)
+        initStatusBarLightMode(this)
 
         initView()
         initWebView()

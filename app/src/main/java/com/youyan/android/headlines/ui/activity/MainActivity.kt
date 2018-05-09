@@ -8,6 +8,8 @@ import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.AppManager
 import com.youyan.android.headlines.app.BaseApplicatoin
+import com.youyan.android.headlines.common.initStatusBarDarkMode
+import com.youyan.android.headlines.common.initStatusBarLightMode
 import com.youyan.android.headlines.common.isLogin
 import com.youyan.android.headlines.common.loadUrl
 import com.youyan.android.headlines.ui.fragement.main.HomeFragment
@@ -101,16 +103,13 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
     }
 
     private fun setToolbar(i: Int){
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         when(i){
             0,1 -> {
-                QMUIStatusBarHelper.setStatusBarDarkMode(this)
-                window.statusBarColor = resources.getColor(R.color.colorPrimaryDark)
+                initStatusBarDarkMode(this)
                 if (toolbar.visibility == View.GONE) toolbar.visibility = View.VISIBLE
             }
             2,3 -> {
-                QMUIStatusBarHelper.setStatusBarLightMode(this)
-                window.statusBarColor = resources.getColor(R.color.material_grey_50)
+                initStatusBarLightMode(this)
                 if (toolbar.visibility == View.VISIBLE) toolbar.visibility = View.GONE
             }
         }

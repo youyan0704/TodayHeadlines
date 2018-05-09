@@ -30,6 +30,8 @@ class HeadlinesFragment: BaseFragment<HeadlinesPresenter>(),HeadlinesView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initInjection()
+        initData()
 
         pullRefreshLayout.setOnPullListener(object : QMUIPullRefreshLayout.OnPullListener {
             override fun onMoveRefreshView(offset: Int) {}
@@ -55,6 +57,12 @@ class HeadlinesFragment: BaseFragment<HeadlinesPresenter>(),HeadlinesView {
 
     }
 
+    private fun initData() {
+        if (headlinesRes.size == 0) {
+            mBasePresenter.getNewsResponse()
+        }
+    }
+
     private fun initInjection() {
         DaggerRecommendFragmentComponent.builder()
                 .lifecycleProviderModule(LifecycleProviderModule(this))
@@ -75,14 +83,14 @@ class HeadlinesFragment: BaseFragment<HeadlinesPresenter>(),HeadlinesView {
         adapter.update(headlinesRes)
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+   /* override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
+        initData()
+    }*/
 
-        initInjection()
-
-        if (isVisibleToUser && headlinesRes.size == 0) {
-            mBasePresenter.getNewsResponse()
+    companion object {
+        fun newInstance(): HeadlinesFragment {
+            return HeadlinesFragment()
         }
     }
-
 }// Required empty public constructor

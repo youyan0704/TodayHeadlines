@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
 
         val fragments = ArrayList<Fragment>()
         for (i in 1.. titleList.size){
-            fragments.add(HeadlinesFragment())
+            fragments.add(HeadlinesFragment.newInstance())
         }
 
         contentViewPager.adapter = HomeFragmentAdapter(fragments, titleList, fragmentManager)

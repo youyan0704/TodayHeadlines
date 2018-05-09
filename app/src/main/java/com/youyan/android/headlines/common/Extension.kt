@@ -1,11 +1,13 @@
 package com.youyan.android.headlines.common
 
+import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.widget.ImageView
 import com.airbnb.lottie.LottieAnimationView
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.squareup.picasso.Picasso
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.BaseApplicatoin
@@ -83,11 +85,14 @@ fun isProcessInBackground(context: Context): Boolean{
 }
 
 /**
- * loading lottieAnimationView
+ *
  */
+fun initStatusBarLightMode(activity: Activity) {
+    QMUIStatusBarHelper.setStatusBarLightMode(activity)
+    activity.window.statusBarColor = activity.resources.getColor(R.color.material_grey_50)
+}
 
-fun loading(context: Context){
-    val lottieAnimationView = LottieAnimationView(context)
-    lottieAnimationView.setAnimation(R.raw.loading)
-    lottieAnimationView.playAnimation()
+fun initStatusBarDarkMode(activity: Activity) {
+    QMUIStatusBarHelper.setStatusBarDarkMode(activity)
+    activity.window.statusBarColor = activity.resources.getColor(R.color.colorPrimaryDark)
 }

@@ -20,6 +20,7 @@ class MiniHeadlinesPresenter @Inject constructor(): BasePresenter<MiniHeadlinesV
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<HeadlinesResponse> {
                     override fun onComplete() {
+                        mBaseView.hideLoading()
                         LoggerUtil.i("getMiniHeadlinesResponse","onCompleted")
                     }
 
@@ -32,6 +33,7 @@ class MiniHeadlinesPresenter @Inject constructor(): BasePresenter<MiniHeadlinesV
                     }
 
                     override fun onError(e: Throwable) {
+                        mBaseView.onGetResultError()
                         LoggerUtil.i("getMiniHeadlinesResponse",e.message)
                     }
 
