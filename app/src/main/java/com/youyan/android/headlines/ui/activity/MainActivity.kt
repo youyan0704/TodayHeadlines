@@ -3,11 +3,9 @@ package com.youyan.android.headlines.ui.activity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.view.View
-import android.view.WindowManager
-import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.app.AppManager
-import com.youyan.android.headlines.app.BaseApplicatoin
+import com.youyan.android.headlines.app.BaseApplication
 import com.youyan.android.headlines.common.initStatusBarDarkMode
 import com.youyan.android.headlines.common.initStatusBarLightMode
 import com.youyan.android.headlines.common.isLogin
@@ -81,7 +79,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
     }
 
     private fun initData() {
-        userInfoBox = BaseApplicatoin.getBoxStoreInstance().boxFor(UserInfo::class.java)
+        userInfoBox = BaseApplication.getBoxStoreInstance().boxFor(UserInfo::class.java)
         /*userInfo = UserInfo(0,1,"http://cdnq.duitang.com/uploads/item/201504/04/20150404H3338_N8Wir.jpeg",
                 "",true,12, "xiaoY","",true,"")
         userInfoBox.put(userInfo)*/

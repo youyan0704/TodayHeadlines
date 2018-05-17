@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/padding_10dp"
@@ -98,10 +99,13 @@
         android:text="生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱.
 生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱."/>
 
-   <android.support.v7.widget.RecyclerView
-       android:id="@+id/imageRecyclerView"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content" />
+    <com.jaeger.ninegridimageview.NineGridImageView
+        android:id="@+id/nineGridImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:imgGap="4dp"
+        app:showStyle="fill"
+        app:singleImgSize="120dp"/>
 
     <!--<View
         android:layout_width="match_parent"

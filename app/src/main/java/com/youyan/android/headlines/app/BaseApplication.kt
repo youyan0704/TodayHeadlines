@@ -8,7 +8,7 @@ import com.youyan.android.headlines.utils.LoggerUtil
 import io.objectbox.BoxStore
 import io.objectbox.android.AndroidObjectBrowser
 
-class BaseApplicatoin : Application() {
+class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()

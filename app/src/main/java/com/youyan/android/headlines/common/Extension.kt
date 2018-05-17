@@ -6,11 +6,10 @@ import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.widget.ImageView
-import com.airbnb.lottie.LottieAnimationView
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.squareup.picasso.Picasso
 import com.youyan.android.headlines.R
-import com.youyan.android.headlines.app.BaseApplicatoin
+import com.youyan.android.headlines.app.BaseApplication
 import com.youyan.android.headlines.ui.model.UserInfo
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -44,12 +43,21 @@ fun ImageView.loadUrl(url: String){
             .into(this)
 }
 
+fun ImageView.loadUrl(url: String,width:Int,height:Int){
+    if (url.isEmpty()) return
+    Picasso.get()
+            .load(Uri.parse(url))
+            .resize(width,height)
+            .placeholder(R.mipmap.app_logo)
+            .into(this)
+}
+
 /**
  * 判断是否登录
  */
 fun isLogin(): Boolean {
 
-    return BaseApplicatoin.getBoxStoreInstance().boxFor(UserInfo::class.java).count() > 0
+    return BaseApplication.getBoxStoreInstance().boxFor(UserInfo::class.java).count() > 0
 }
 
 /**
