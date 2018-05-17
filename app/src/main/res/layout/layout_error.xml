@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/material_grey_200"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     tools:context=".ui.activity.UserInfoActivity">
 
     <ImageView
-        android:id="@+id/lottie"
+        android:id="@+id/error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@mipmap/img_net_error"/>
+        android:layout_marginTop="150dp"
+        android:src="@mipmap/img_net_error" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="网络不可用"
+        android:text="网络不可用，点击屏幕重试"
         android:textColor="@color/material_grey_500"/>
 
 </LinearLayout>

@@ -96,11 +96,12 @@
         android:lineSpacingMultiplier="1.2"
         android:maxLines="6"
         android:text="生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱.
-生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱.
-生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱.
-生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱.
-生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱.
 生日快乐,亲爱的何老师. @何炅 爱您,因为您也如此值得被爱."/>
+
+   <android.support.v7.widget.RecyclerView
+       android:id="@+id/imageRecyclerView"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" />
 
     <!--<View
         android:layout_width="match_parent"
@@ -133,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_5dp"
-                android:text="62"/>
+                android:text="0"/>
 
         </LinearLayout>
 
@@ -155,7 +156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_5dp"
-                android:text="121"/>
+                android:text="0"/>
 
         </LinearLayout>
 
@@ -177,7 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_5dp"
-                android:text="3990"/>
+                android:text="0"/>
 
         </LinearLayout>
 
