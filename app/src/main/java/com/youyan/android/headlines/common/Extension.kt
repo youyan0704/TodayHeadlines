@@ -39,7 +39,6 @@ fun ImageView.loadUrl(url: String){
     if (url.isEmpty()) return
     Picasso.get()
             .load(Uri.parse(url))
-            .placeholder(R.mipmap.app_logo)
             .into(this)
 }
 
@@ -48,7 +47,6 @@ fun ImageView.loadUrl(url: String,width:Int,height:Int){
     Picasso.get()
             .load(Uri.parse(url))
             .resize(width,height)
-            .placeholder(R.mipmap.app_logo)
             .into(this)
 }
 

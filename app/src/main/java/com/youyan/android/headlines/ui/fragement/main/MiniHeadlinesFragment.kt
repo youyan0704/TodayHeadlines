@@ -106,7 +106,9 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
         pullRefreshLayout.finishRefresh()
         for (data in headlinesResponse.data){
             val miniHeadline = Gson().fromJson(data.content,MiniHeadlines::class.java)
-            miniHeadlines.add(0,miniHeadline)
+            if (miniHeadline.user != null) {
+                miniHeadlines.add(0,miniHeadline)
+            }
         }
         if (isPullUpRefresh){
             miniHeadlinesAdapter.addData(miniHeadlines)

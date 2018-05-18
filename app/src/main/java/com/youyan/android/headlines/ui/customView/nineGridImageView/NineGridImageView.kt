@@ -11,14 +11,14 @@ import java.util.ArrayList
 open class NineGridImageView<T> @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null)
     : ViewGroup(context, attrs) {
 
-    private var mRowCount: Int = 0       // 行数
-    private var mColumnCount: Int = 0    // 列数
+    private var mRowCount: Int = 0          // 行数
+    private var mColumnCount: Int = 0       // 列数
 
-    private var mMaxSize: Int = 0        // 最大图片数
-    private var mShowStyle: Int = 0     // 显示风格
-    private var mGap: Int = 0           // 宫格间距
-    private var mSingleImgSize: Int = 0 // 单张图片时的尺寸
-    private var mGridSize: Int = 0   // 宫格大小,即图片大小
+    private var mMaxSize: Int = 0           // 最大图片数
+    private var mShowStyle: Int = 0         // 显示风格
+    private var mGap: Int = 0               // 宫格间距
+    private var mSingleImgSize: Int = 0     // 单张图片时的尺寸
+    private var mGridSize: Int = 0          // 宫格大小,即图片大小
 
     private val mImageViewList = ArrayList<ImageView>()
     private var mImgDataList =  listOf<T>()
@@ -98,23 +98,14 @@ open class NineGridImageView<T> @JvmOverloads constructor(context: Context, attr
         val gridParam = calculateGridParam(lists.size, mShowStyle)
         mRowCount = gridParam[0]
         mColumnCount = gridParam[1]
-        if (mImgDataList == null) {
-            var i = 0
-            while (i < lists.size) {
+        val oldViewCount = mImgDataList.size
+        val newViewCount = lists.size
+        if (oldViewCount > newViewCount) {
+            removeViews(newViewCount, oldViewCount - newViewCount)
+        } else if (oldViewCount < newViewCount) {
+            for (i in oldViewCount until newViewCount) {
                 val iv = getImageView(i) ?: return
                 addView(iv, generateDefaultLayoutParams())
-                i++
-            }
-        } else {
-            val oldViewCount = mImgDataList!!.size
-            val newViewCount = lists.size
-            if (oldViewCount > newViewCount) {
-                removeViews(newViewCount, oldViewCount - newViewCount)
-            } else if (oldViewCount < newViewCount) {
-                for (i in oldViewCount until newViewCount) {
-                    val iv = getImageView(i) ?: return
-                    addView(iv, generateDefaultLayoutParams())
-                }
             }
         }
         mImgDataList = lists
@@ -200,15 +191,19 @@ open class NineGridImageView<T> @JvmOverloads constructor(context: Context, attr
         protected fun calculateGridParam(imagesSize: Int, showStyle: Int): IntArray {
             val gridParam = IntArray(2)
             when (showStyle) {
-                STYLE_FILL -> if (imagesSize < 3) {
-                    gridParam[0] = 1
-                    gridParam[1] = imagesSize
-                } else if (imagesSize <= 4) {
-                    gridParam[0] = 2
-                    gridParam[1] = 2
-                } else {
-                    gridParam[0] = imagesSize / 3 + if (imagesSize % 3 == 0) 0 else 1
-                    gridParam[1] = 3
+                STYLE_FILL -> when {
+                    imagesSize < 3 -> {
+                        gridParam[0] = 1
+                        gridParam[1] = imagesSize
+                    }
+                    imagesSize <= 4 -> {
+                        gridParam[0] = 2
+                        gridParam[1] = 2
+                    }
+                    else -> {
+                        gridParam[0] = imagesSize / 3 + if (imagesSize % 3 == 0) 0 else 1
+                        gridParam[1] = 3
+                    }
                 }
                 STYLE_GRID -> {
                     gridParam[0] = imagesSize / 3 + if (imagesSize % 3 == 0) 0 else 1
