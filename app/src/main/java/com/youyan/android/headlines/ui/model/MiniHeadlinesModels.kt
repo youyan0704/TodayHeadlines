@@ -1,5 +1,8 @@
 package com.youyan.android.headlines.ui.model
 
+import io.objectbox.annotation.Entity
+import io.objectbox.annotation.Id
+
 data class MiniHeadlines(
     val abstract: String,
     val action_list: List<Action>,
@@ -148,4 +151,11 @@ data class ThumbImage(
     val url: String,
     val url_list: List<Url>,
     val width: Int
+)
+
+@Entity
+data class MiniHeadlinesData(
+    @Id var id: Long = 0,
+
+    var lastRequestTime: Long = 0      //上一次请求时间戳
 )

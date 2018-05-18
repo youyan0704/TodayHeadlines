@@ -26,7 +26,6 @@ class BaseApplication : Application() {
         if (BuildConfig.DEBUG){
             boxStore?.let {
                 LoggerUtil.i("ObjectBrowser", "Started: " + System.currentTimeMillis())
-                val started = AndroidObjectBrowser(boxStore).start(this)
             }
         }
     }
