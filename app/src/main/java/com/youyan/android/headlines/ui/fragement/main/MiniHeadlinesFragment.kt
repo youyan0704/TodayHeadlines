@@ -12,7 +12,6 @@ import com.qmuiteam.qmui.widget.pullRefreshLayout.QMUIPullRefreshLayout
 import com.youyan.android.headlines.R
 import com.youyan.android.headlines.injection.component.DaggerRecommendFragmentComponent
 import com.youyan.android.headlines.injection.module.LifecycleProviderModule
-import com.youyan.android.headlines.ui.CustomView.MyLoadMoreView
 import com.youyan.android.headlines.ui.ItemDecoration.RecyclerViewDivider
 import com.youyan.android.headlines.ui.activity.WebViewActivity
 import com.youyan.android.headlines.ui.adapter.MiniHeadlinesAdapter
@@ -105,7 +104,6 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
 
     override fun onGetMiniHeadlinesResponseResult(headlinesResponse: HeadlinesResponse) {
         pullRefreshLayout.finishRefresh()
-//        miniHeadlines.clear()
         for (data in headlinesResponse.data){
             val miniHeadline = Gson().fromJson(data.content,MiniHeadlines::class.java)
             miniHeadlines.add(0,miniHeadline)

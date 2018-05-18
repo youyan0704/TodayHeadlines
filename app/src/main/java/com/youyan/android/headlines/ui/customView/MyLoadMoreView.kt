@@ -1,4 +1,4 @@
-package com.youyan.android.headlines.ui.CustomView
+package com.youyan.android.headlines.ui.customView
 
 import com.chad.library.adapter.base.loadmore.LoadMoreView
 import com.youyan.android.headlines.R

@@ -111,6 +111,4 @@ dependencies {
     implementation ("com.airbnb.android:lottie:$lottie_version"){
         exclude group:"com.android.support"
     }
-
-    implementation 'com.jaeger.ninegridimageview:library:1.0.2'
 }
