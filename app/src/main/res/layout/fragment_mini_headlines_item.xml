@@ -104,8 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:imgGap="4dp"
-        app:showStyle="fill"
-        app:singleImgSize="120dp"/>
+        app:showStyle="fill" />
 
     <!--<View
         android:layout_width="match_parent"

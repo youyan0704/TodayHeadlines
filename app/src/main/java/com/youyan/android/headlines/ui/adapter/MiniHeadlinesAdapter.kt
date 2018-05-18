@@ -32,7 +32,11 @@ class MiniHeadlinesAdapter(ResId : Int,dataList : ArrayList<MiniHeadlines>)
 
             val nineImageAdapter = object : NineGridImageViewAdapter<LargeImage>() {
                 override fun onDisplayImage(context: Context, imageView: ImageView, t: LargeImage) {
-                    imageView.loadUrl(t.url)
+                    imageView.loadUrl(t.url,t.width,t.height)
+                }
+
+                override fun onItemImageClick(context: Context, index: Int, list: MutableList<LargeImage>) {
+
                 }
 
             }
@@ -44,23 +48,14 @@ class MiniHeadlinesAdapter(ResId : Int,dataList : ArrayList<MiniHeadlines>)
                 .setText(R.id.publishTime,DateUtil.convertSecond2Day(miniHeadlines.create_time.toLong(),null))
                 .setText(R.id.userCatergray,miniHeadlines.user.verified_content)
                 .setText(R.id.content,miniHeadlines.content)
-//                    .setText(R.id.share,miniHeadlines.share_count.toString())
+                .setText(R.id.forward_count,miniHeadlines.forward_info.forward_count.toString())
                 .setText(R.id.comment_count,miniHeadlines.comment_count.toString())
-//                    .setText(R.id.like,miniHeadlines.digg_count.toString())
+                .setText(R.id.like_count,miniHeadlines.digg_count.toString())
                 .addOnClickListener(R.id.dislike)
                 .addOnClickListener(R.id.follow)
                 .addOnClickListener(R.id.share)
                 .addOnClickListener(R.id.comment_count)
                 .addOnClickListener(R.id.like)
-
-
-    }
-
-    class ImageAdapter(ResId : Int,dataList : List<LargeImage>)
-        : BaseQuickAdapter<LargeImage, BaseViewHolder>(ResId,dataList){
-        override fun convert(helper: BaseViewHolder, item: LargeImage) {
-            helper.getView<ImageView>(R.id.image_item).loadUrl(item.url)
-        }
 
     }
 

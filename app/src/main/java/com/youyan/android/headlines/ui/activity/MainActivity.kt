@@ -80,9 +80,9 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
 
     private fun initData() {
         userInfoBox = BaseApplication.getBoxStoreInstance().boxFor(UserInfo::class.java)
-        /*userInfo = UserInfo(0,1,"http://cdnq.duitang.com/uploads/item/201504/04/20150404H3338_N8Wir.jpeg",
-                "",true,12, "xiaoY","",true,"")
-        userInfoBox.put(userInfo)*/
+        userInfo = UserInfo(0,"http://cdnq.duitang.com/uploads/item/201504/04/20150404H3338_N8Wir.jpeg","",
+                true,99,"Allen", 1201230011,false)
+        userInfoBox.put(userInfo)
 //        userInfoBox.removeAll()
 
         if (isLogin()){

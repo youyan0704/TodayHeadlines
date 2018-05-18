@@ -73,10 +73,10 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
         recyclerView.adapter = miniHeadlinesAdapter
         //开启默认动画
         miniHeadlinesAdapter.openLoadAnimation()
-        //开启上拉加载更多
-//        miniHeadlinesAdapter.setEnableLoadMore(true)
+        /*//开启上拉加载更多
+        miniHeadlinesAdapter.setEnableLoadMore(true)
         //当列表滑动到倒数第N个Item的时候(默认是1)回调onLoadMoreRequested方法
-//        miniHeadlinesAdapter.setPreLoadNumber(2)
+        miniHeadlinesAdapter.setPreLoadNumber(2)
         //加载更多视图
         miniHeadlinesAdapter.setLoadMoreView(object : MyLoadMoreView() {})
         //加载更多
@@ -84,7 +84,7 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
             isPullUpRefresh = true
             initData()
 
-        },recyclerView)
+        },recyclerView)*/
         //点击事件
         miniHeadlinesAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
             startActivity<WebViewActivity>("url" to miniHeadlines[position].share_url) }
@@ -105,18 +105,17 @@ class MiniHeadlinesFragment : BaseFragment<MiniHeadlinesPresenter>(),MiniHeadlin
 
     override fun onGetMiniHeadlinesResponseResult(headlinesResponse: HeadlinesResponse) {
         pullRefreshLayout.finishRefresh()
-        miniHeadlines.clear()
+//        miniHeadlines.clear()
         for (data in headlinesResponse.data){
             val miniHeadline = Gson().fromJson(data.content,MiniHeadlines::class.java)
-            if (miniHeadline.user != null)
-                miniHeadlines.add(miniHeadline)
+            miniHeadlines.add(0,miniHeadline)
         }
         if (isPullUpRefresh){
             miniHeadlinesAdapter.addData(miniHeadlines)
             miniHeadlinesAdapter.loadMoreComplete()
 
         } else{
-            miniHeadlinesAdapter.addData(0,miniHeadlines)
+            miniHeadlinesAdapter.setNewData(miniHeadlines)
         }
 
     }
