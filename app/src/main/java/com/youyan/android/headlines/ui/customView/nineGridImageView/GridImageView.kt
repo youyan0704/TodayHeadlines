@@ -19,6 +19,7 @@ class GridImageView : ImageView {
             MotionEvent.ACTION_DOWN -> {
                 val drawable = drawable
                 drawable?.mutate()?.setColorFilter(Color.LTGRAY, PorterDuff.Mode.MULTIPLY)
+
             }
             MotionEvent.ACTION_MOVE -> {
             }

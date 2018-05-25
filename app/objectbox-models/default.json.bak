@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:1411116553174101609",
-      "lastPropertyId": "11:1557339416436125992",
+      "lastPropertyId": "12:6241635565299281231",
       "name": "UserInfo",
       "properties": [
         {
@@ -29,24 +29,16 @@
           "name": "name"
         },
         {
-          "id": "7:5751033750461601139",
-          "name": "user_auth_info"
-        },
-        {
           "id": "8:2910976611387692068",
           "name": "user_verified"
         },
         {
-          "id": "9:2441195234979740115",
-          "name": "verified_content"
-        },
-        {
-          "id": "10:2688082448883179103",
-          "name": "userid"
-        },
-        {
           "id": "11:1557339416436125992",
           "name": "id"
+        },
+        {
+          "id": "12:6241635565299281231",
+          "name": "user_id"
         }
       ],
       "relations": []
@@ -61,7 +53,10 @@
   "retiredEntityUids": [],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
-    1403773562218181312
+    1403773562218181312,
+    5751033750461601139,
+    2441195234979740115,
+    2688082448883179103
   ],
   "retiredRelationUids": [],
   "version": 1

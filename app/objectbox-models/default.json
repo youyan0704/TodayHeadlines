@@ -42,9 +42,25 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "2:714195437959034891",
+      "lastPropertyId": "2:2778154747028050688",
+      "name": "MiniHeadlinesData",
+      "properties": [
+        {
+          "id": "1:6699654920770453784",
+          "name": "id"
+        },
+        {
+          "id": "2:2778154747028050688",
+          "name": "lastRequestTime"
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "1:1411116553174101609",
+  "lastEntityId": "2:714195437959034891",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
