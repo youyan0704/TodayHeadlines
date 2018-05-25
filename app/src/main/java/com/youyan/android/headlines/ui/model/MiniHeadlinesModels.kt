@@ -1,5 +1,8 @@
 package com.youyan.android.headlines.ui.model
 
+import io.objectbox.annotation.Entity
+
+@Entity
 data class MiniHeadlines(
     val abstract: String,
     val action_list: List<Action>,
@@ -15,7 +18,7 @@ data class MiniHeadlines(
     val cell_type: Int,
     val cell_ui_type: String,
     val comment_count: Int,
-    val comments: List<Any>,
+    val comments: List<Comment>,
     val content: String,
     val content_decoration: String,
     val content_rich_span: String,
@@ -28,7 +31,7 @@ data class MiniHeadlines(
     val follow_button_style: Int,
     val forum: Forum,
     val forward_info: ForwardInfo,
-    val friend_digg_list: List<Any>,
+    val friend_digg_list: List<String>,
     val has_m3u8_video: Boolean,
     val has_mp4_video: Int,
     val has_video: Boolean,
@@ -50,7 +53,7 @@ data class MiniHeadlines(
     val rid: String,
     val schema: String,
     val share_count: Int,
-    val share_info: Any,
+    val share_info: ShareInfo,
     val share_url: String,
     val show_dislike: Boolean,
     val show_portrait: Boolean,
@@ -63,7 +66,7 @@ data class MiniHeadlines(
     val title: String,
     val ugc_cut_image_list: List<UgcCutImage>,
     val ugc_recommend: UgcRecommend,
-    val ugc_u13_cut_image_list: List<Any>,
+    val ugc_u13_cut_image_list: List<UgcU13CutImage>,
     val ui_type: Int,
     val user: User,
     val user_digg: Int,
@@ -71,6 +74,10 @@ data class MiniHeadlines(
     val user_verified: Int,
     val verified_content: String,
     val video_style: Int
+)
+
+data class Comment(
+    val content: String
 )
 
 data class Position(
@@ -142,6 +149,15 @@ data class Forum(
 )
 
 data class ThumbImage(
+    val height: Int,
+    val type: Int,
+    val uri: String,
+    val url: String,
+    val url_list: List<Url>,
+    val width: Int
+)
+
+data class UgcU13CutImage(
     val height: Int,
     val type: Int,
     val uri: String,

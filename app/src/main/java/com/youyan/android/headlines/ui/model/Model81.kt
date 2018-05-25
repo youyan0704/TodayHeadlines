@@ -36,6 +36,7 @@ data class Tips(
 
 data class Headlines(
     val abstract: String,
+//    val action_extra: ActionExtra,
     val action_list: List<Action>,
     val aggr_type: Int,
     val allow_download: Boolean,
