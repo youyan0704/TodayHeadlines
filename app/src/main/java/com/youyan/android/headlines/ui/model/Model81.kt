@@ -106,7 +106,7 @@ data class Action(
 )
 
 data class Extra(
-    val isExtra: Extra
+    val isExtra: Boolean
 )
 
 data class ShareInfo(
