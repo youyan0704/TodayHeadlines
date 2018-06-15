@@ -1,5 +1,6 @@
 package com.youyan.android.headlines.ui.customView.nineGridImageView
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
@@ -13,6 +14,7 @@ class GridImageView : ImageView {
 
     constructor(context: Context) : super(context)
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
         when (event.action) {

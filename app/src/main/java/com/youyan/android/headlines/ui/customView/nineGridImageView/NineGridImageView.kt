@@ -41,7 +41,7 @@ open class NineGridImageView<T> @JvmOverloads constructor(context: Context, attr
         val totalWidth = width - paddingLeft - paddingRight
         if (mImgDataList.isNotEmpty()) {
             if (mImgDataList.size == 1 && mSingleImgSize != -1) {
-                mGridSize = if (mSingleImgSize > totalWidth) totalWidth else mSingleImgSize
+                mGridSize = Math.min(totalWidth, mSingleImgSize)
             } else {
                 mImageViewList[0].scaleType = ImageView.ScaleType.CENTER_CROP
                 mGridSize = (totalWidth - mGap * (mColumnCount - 1)) / mColumnCount
@@ -66,10 +66,8 @@ open class NineGridImageView<T> @JvmOverloads constructor(context: Context, attr
         for (i in 0 until childrenCount) {
             val childrenView = getChildAt(i) as ImageView
             mAdapter.onDisplayImage(context, childrenView, mImgDataList[i])
-            val rowNum = i / mColumnCount
-            val columnNum = i % mColumnCount
-            val left = (mGridSize + mGap) * columnNum + paddingLeft
-            val top = (mGridSize + mGap) * rowNum + paddingTop
+            val left = (mGridSize + mGap) * (i % mColumnCount) + paddingLeft
+            val top = (mGridSize + mGap) * (i / mColumnCount) + paddingTop
             val right = left + mGridSize
             val bottom = top + mGridSize
 
@@ -192,11 +190,11 @@ open class NineGridImageView<T> @JvmOverloads constructor(context: Context, attr
             val gridParam = IntArray(2)
             when (showStyle) {
                 STYLE_FILL -> when {
-                    imagesSize < 3 -> {
+                    imagesSize <= 3 -> {
                         gridParam[0] = 1
                         gridParam[1] = imagesSize
                     }
-                    imagesSize <= 4 -> {
+                    imagesSize == 4 -> {
                         gridParam[0] = 2
                         gridParam[1] = 2
                     }

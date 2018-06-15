@@ -90,7 +90,7 @@ class MainActivity : BaseActivity<BasePresenter<*>>(),View.OnClickListener {
             loginedIcon.visibility = View.VISIBLE
             unLoginedIcon.visibility = View.GONE
             unLoginedText.visibility = View.GONE
-            loginedIcon.loadUrl(userInfo.avatar_url)
+            loginedIcon.loadUrl(userInfo.avatar_url,R.mipmap.a9v)
         }else{
             loginedIcon.visibility = View.GONE
             unLoginedIcon.visibility = View.VISIBLE

@@ -17,25 +17,12 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <ImageView
             android:id="@+id/find_friend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/avl"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_people_add"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="找人"
-                android:textSize="@dimen/text_small_size" />
-
-        </LinearLayout>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -44,25 +31,11 @@
             android:textSize="@dimen/text_hight_size"
             android:text="微头条"/>
 
-        <LinearLayout
+        <ImageView
             android:id="@+id/id_publish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_camera_black_24dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="发布"
-                android:textSize="@dimen/text_small_size" />
-
-        </LinearLayout>
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/a1q"/>
 
     </LinearLayout>
 
